@@ -18,7 +18,7 @@ A full-stack web application for booking lawyer appointments and managing profil
 ##  Setup
 
 ```bash
-git clone https://github.com/your-username/doctor-appointment-system.git
+git clone https://github.com/your-username/AdvocateAssam.git
 cd backend
 npm install
 cd ../FrontEnd
