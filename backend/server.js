@@ -16,7 +16,14 @@ connectCloudinary()
 
 // middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: [
+    "https://advocateassam.com",
+    "https://www.advocateassam.com",
+    "https://advocate-assam.vercel.app"
+  ],
+  credentials: true
+}))
 
 
 // api endpoints
