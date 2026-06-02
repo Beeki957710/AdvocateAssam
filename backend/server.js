@@ -34,6 +34,30 @@ app.use('/api/user', userRouter)
 app.use("/api/application",applicationRouter);
 //localhost:5000/api/admin/add-doctor
 
+//testing email sending
+app.get("/test-mail", async (req, res) => {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: "AdvocateAssam Test",
+      text: "Mail test successful",
+    });
+
+    res.json({
+      success: true,
+      messageId: info.messageId,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      success: false,
+      error: error.message,
+      code: error.code,
+    });
+  }
+});
+
 
 app.get('/', (req, res)=>{
     res.send('API WORKING')

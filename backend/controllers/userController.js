@@ -42,13 +42,14 @@ const registerUser = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: userData.email,
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: userData.email,
 
-      subject: "Welcome to AdvocateAssam - Your Account Has Been Created ⚖️",
+        subject: "Welcome to AdvocateAssam - Your Account Has Been Created ⚖️",
 
-      html: `
+        html: `
   <div style="font-family: Arial, sans-serif; background:#f5f7fb; padding:40px;">
 
     <div style="max-width:650px; margin:auto; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
@@ -177,7 +178,10 @@ const registerUser = async (req, res) => {
 
   </div>
   `,
-    });
+      });
+    } catch (err) {
+      console.log("Email failed:", err);
+    }
 
     res.json({ success: true, token });
   } catch (error) {
