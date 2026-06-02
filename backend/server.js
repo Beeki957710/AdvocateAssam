@@ -7,7 +7,7 @@ import adminRouter from './routes/adminRoute.js'
 import doctorRouter from './routes/doctorRoute.js'
 import userRouter from './routes/userRoutes.js'
 import applicationRouter from "./routes/applicationRoute.js"
-import apiInstance from "./config/brevo.js";
+
 
 //app config
 const app = express()
@@ -38,31 +38,31 @@ app.use("/api/application",applicationRouter);
 //testing email sending
 
 
-app.get("/test-mail", async (req, res) => {
-  try {
-    await apiInstance.sendTransacEmail({
-      sender: {
-        name: "AdvocateAssam",
-        email: "support@advocateassam.com",
-      },
-      to: [
-        {
-          email: "YOUR_EMAIL@gmail.com",
-        },
-      ],
-      subject: "Brevo API Test",
-      htmlContent: "<h1>Mail Working</h1>",
-    });
+// app.get("/test-mail", async (req, res) => {
+//   try {
+//     await apiInstance.sendTransacEmail({
+//       sender: {
+//         name: "AdvocateAssam",
+//         email: "support@advocateassam.com",
+//       },
+//       to: [
+//         {
+//           email: "YOUR_EMAIL@gmail.com",
+//         },
+//       ],
+//       subject: "Brevo API Test",
+//       htmlContent: "<h1>Mail Working</h1>",
+//     });
 
-    res.json({ success: true });
-  } catch (err) {
-    console.log(err);
-    res.json({
-      success: false,
-      error: err.message,
-    });
-  }
-});
+//     res.json({ success: true });
+//   } catch (err) {
+//     console.log(err);
+//     res.json({
+//       success: false,
+//       error: err.message,
+//     });
+//   }
+// });
 
 
 app.get('/', (req, res)=>{
