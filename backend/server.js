@@ -38,21 +38,19 @@ app.use("/api/application",applicationRouter);
 //testing email sending
 app.get("/test-mail", async (req, res) => {
   try {
-    const info = await transporter.sendMail({
-      from: process.env.BREVO_USER,
-      to: "your-email@gmail.com",
-      subject: "Test Email",
-      text: "Brevo is working!",
-    });
+    await transporter.verify();
 
     res.json({
       success: true,
-      messageId: info.messageId,
+      message: "SMTP connection successful",
     });
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
+
     res.json({
       success: false,
-      error: err.message,
+      error: error.message,
+      code: error.code,
     });
   }
 });
