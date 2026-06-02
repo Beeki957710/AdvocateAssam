@@ -7,7 +7,7 @@ import appointmentModel from "../models/appointmentModel.js";
 import userModel from "../models/userModel.js";
 import lawyerApplicationModel from "../models/lawyerApplicationModel.js";
 import transporter from "../config/nodemailer.js";
-import apiInstance from "../config/brevo.js";
+
 
 // API for adding lawyer
 const addDoctor = async (req, res) => {
