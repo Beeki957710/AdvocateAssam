@@ -23,6 +23,10 @@ const Login = () => {
 
       if (state === 'Sign Up'){
         const {data} = await axios.post(backendUrl + '/api/user/register', {name, password, email})
+
+        console.log("REGISTER RESPONSE:", data);
+
+        
         if(data.success) {
           toast.success("Account created successfully!")
           localStorage.setItem('token', data.token)
