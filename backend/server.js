@@ -7,7 +7,7 @@ import adminRouter from './routes/adminRoute.js'
 import doctorRouter from './routes/doctorRoute.js'
 import userRouter from './routes/userRoutes.js'
 import applicationRouter from "./routes/applicationRoute.js"
-import transporter from './config/nodemailer.js'
+import apiInstance from "./config/brevo.js";
 
 //app config
 const app = express()
@@ -36,21 +36,30 @@ app.use("/api/application",applicationRouter);
 //localhost:5000/api/admin/add-doctor
 
 //testing email sending
+
+
 app.get("/test-mail", async (req, res) => {
   try {
-    await transporter.verify();
-
-    res.json({
-      success: true,
-      message: "SMTP connection successful",
+    await apiInstance.sendTransacEmail({
+      sender: {
+        name: "AdvocateAssam",
+        email: "support@advocateassam.com",
+      },
+      to: [
+        {
+          email: "YOUR_EMAIL@gmail.com",
+        },
+      ],
+      subject: "Brevo API Test",
+      htmlContent: "<h1>Mail Working</h1>",
     });
-  } catch (error) {
-    console.log(error);
 
+    res.json({ success: true });
+  } catch (err) {
+    console.log(err);
     res.json({
       success: false,
-      error: error.message,
-      code: error.code,
+      error: err.message,
     });
   }
 });
