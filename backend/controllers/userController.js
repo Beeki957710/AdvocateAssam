@@ -36,11 +36,17 @@ const registerUser = async (req, res) => {
       email,
       password: hashedPassword,
     };
+////////
+    console.log("Step 1");
 
     const newUser = new userModel(userData);
     const user = await newUser.save();
+/////////
+    console.log("Step 2");
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+//////////////
+    console.log("Step 3");
 
     try {
       await transporter.sendMail({
@@ -179,9 +185,12 @@ const registerUser = async (req, res) => {
   </div>
   `,
       });
+      console.log("Step 4");
     } catch (err) {
       console.log("Email failed:", err);
     }
+
+    console.log("Step 5");
 
     res.json({ success: true, token });
   } catch (error) {
