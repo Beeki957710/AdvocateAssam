@@ -38,22 +38,20 @@ app.use("/api/application",applicationRouter);
 app.get("/test-mail", async (req, res) => {
   try {
     const info = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: "AdvocateAssam Test",
-      text: "Mail test successful",
+      from: process.env.BREVO_USER,
+      to: "your-email@gmail.com",
+      subject: "Test Email",
+      text: "Brevo is working!",
     });
 
     res.json({
       success: true,
       messageId: info.messageId,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
     res.json({
       success: false,
-      error: error.message,
-      code: error.code,
+      error: err.message,
     });
   }
 });
