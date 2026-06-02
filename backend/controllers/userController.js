@@ -48,147 +48,147 @@ const registerUser = async (req, res) => {
 //////////////
     console.log("Step 3");
 
-    try {
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: userData.email,
+  //   try {
+  //     await transporter.sendMail({
+  //       from: process.env.EMAIL_USER,
+  //       to: userData.email,
 
-        subject: "Welcome to AdvocateAssam - Your Account Has Been Created ⚖️",
+  //       subject: "Welcome to AdvocateAssam - Your Account Has Been Created ⚖️",
 
-        html: `
-  <div style="font-family: Arial, sans-serif; background:#f5f7fb; padding:40px;">
+  //       html: `
+  // <div style="font-family: Arial, sans-serif; background:#f5f7fb; padding:40px;">
 
-    <div style="max-width:650px; margin:auto; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+  //   <div style="max-width:650px; margin:auto; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
 
-      <!-- Header -->
-      <div style="background:#0b2149; padding:30px; text-align:center;">
-        <h1 style="color:white; margin:0; font-size:32px;">
-          AdvocateAssam ⚖️
-        </h1>
+  //     <!-- Header -->
+  //     <div style="background:#0b2149; padding:30px; text-align:center;">
+  //       <h1 style="color:white; margin:0; font-size:32px;">
+  //         AdvocateAssam ⚖️
+  //       </h1>
 
-        <p style="color:#d4af37; margin-top:10px; font-size:15px;">
-          Connecting Clients with Trusted Legal Professionals
-        </p>
-      </div>
+  //       <p style="color:#d4af37; margin-top:10px; font-size:15px;">
+  //         Connecting Clients with Trusted Legal Professionals
+  //       </p>
+  //     </div>
 
-      <!-- Content -->
-      <div style="padding:35px;">
+  //     <!-- Content -->
+  //     <div style="padding:35px;">
 
-        <h2 style="color:#0b2149;">
-          Welcome, ${userData.name}! 🎉
-        </h2>
+  //       <h2 style="color:#0b2149;">
+  //         Welcome, ${userData.name}! 🎉
+  //       </h2>
 
-        <p style="font-size:16px; color:#444; line-height:1.7;">
-          Thank you for joining AdvocateAssam.
-          Your account has been successfully created and is now ready to use.
-        </p>
+  //       <p style="font-size:16px; color:#444; line-height:1.7;">
+  //         Thank you for joining AdvocateAssam.
+  //         Your account has been successfully created and is now ready to use.
+  //       </p>
 
-        <p style="font-size:16px; color:#444; line-height:1.7;">
-          You can now explore verified lawyers, book legal consultations,
-          and manage your appointments through our platform.
-        </p>
+  //       <p style="font-size:16px; color:#444; line-height:1.7;">
+  //         You can now explore verified lawyers, book legal consultations,
+  //         and manage your appointments through our platform.
+  //       </p>
 
-        <!-- Account Details -->
-        <div style="
-          background:#f8f9fd;
-          border-left:5px solid #d4af37;
-          padding:18px;
-          margin:25px 0;
-          border-radius:8px;
-        ">
+  //       <!-- Account Details -->
+  //       <div style="
+  //         background:#f8f9fd;
+  //         border-left:5px solid #d4af37;
+  //         padding:18px;
+  //         margin:25px 0;
+  //         border-radius:8px;
+  //       ">
 
-          <p style="margin:6px 0;">
-            <strong>Name:</strong> ${userData.name}
-          </p>
+  //         <p style="margin:6px 0;">
+  //           <strong>Name:</strong> ${userData.name}
+  //         </p>
 
-          <p style="margin:6px 0;">
-            <strong>Email:</strong> ${userData.email}
-          </p>
+  //         <p style="margin:6px 0;">
+  //           <strong>Email:</strong> ${userData.email}
+  //         </p>
 
-          <p style="margin:6px 0;">
-            <strong>Status:</strong>
-            <span style="color:green; font-weight:bold;">
-              ✓ Active Account
-            </span>
-          </p>
+  //         <p style="margin:6px 0;">
+  //           <strong>Status:</strong>
+  //           <span style="color:green; font-weight:bold;">
+  //             ✓ Active Account
+  //           </span>
+  //         </p>
 
-        </div>
+  //       </div>
 
-        <h3 style="color:#0b2149;">
-          What you can do now:
-        </h3>
+  //       <h3 style="color:#0b2149;">
+  //         What you can do now:
+  //       </h3>
 
-        <ul style="color:#444; line-height:1.9;">
-          <li>Find verified lawyers</li>
-          <li>Book legal consultations</li>
-          <li>Manage appointments online</li>
-          <li>Track consultation history</li>
-          <li>Get trusted legal assistance</li>
-        </ul>
+  //       <ul style="color:#444; line-height:1.9;">
+  //         <li>Find verified lawyers</li>
+  //         <li>Book legal consultations</li>
+  //         <li>Manage appointments online</li>
+  //         <li>Track consultation history</li>
+  //         <li>Get trusted legal assistance</li>
+  //       </ul>
 
-        <!-- Login Button -->
-        <div style="text-align:center; margin-top:35px;">
+  //       <!-- Login Button -->
+  //       <div style="text-align:center; margin-top:35px;">
 
-          <a
-            href="https://advocateassam.com"
-            style="
-              display:inline-block;
-              background:#0b2149;
-              color:white;
-              padding:14px 30px;
-              text-decoration:none;
-              border-radius:8px;
-              font-weight:bold;
-              font-size:16px;
-            "
-          >
-            Visit AdvocateAssam
-          </a>
+  //         <a
+  //           href="https://advocateassam.com"
+  //           style="
+  //             display:inline-block;
+  //             background:#0b2149;
+  //             color:white;
+  //             padding:14px 30px;
+  //             text-decoration:none;
+  //             border-radius:8px;
+  //             font-weight:bold;
+  //             font-size:16px;
+  //           "
+  //         >
+  //           Visit AdvocateAssam
+  //         </a>
 
-        </div>
+  //       </div>
 
-        <p style="
-          margin-top:35px;
-          color:#555;
-          line-height:1.7;
-        ">
-          We are committed to making legal services more accessible,
-          transparent, and convenient for everyone.
-        </p>
+  //       <p style="
+  //         margin-top:35px;
+  //         color:#555;
+  //         line-height:1.7;
+  //       ">
+  //         We are committed to making legal services more accessible,
+  //         transparent, and convenient for everyone.
+  //       </p>
 
-        <p style="margin-top:25px;">
-          Regards,<br>
-          <strong>AdvocateAssam Team</strong>
-        </p>
+  //       <p style="margin-top:25px;">
+  //         Regards,<br>
+  //         <strong>AdvocateAssam Team</strong>
+  //       </p>
 
-      </div>
+  //     </div>
 
-      <!-- Footer -->
-      <div style="
-        background:#f8f9fd;
-        padding:20px;
-        text-align:center;
-        color:#777;
-        font-size:13px;
-      ">
-        <p>
-          This is an automated email. Please do not reply directly to this message.
-        </p>
+  //     <!-- Footer -->
+  //     <div style="
+  //       background:#f8f9fd;
+  //       padding:20px;
+  //       text-align:center;
+  //       color:#777;
+  //       font-size:13px;
+  //     ">
+  //       <p>
+  //         This is an automated email. Please do not reply directly to this message.
+  //       </p>
 
-        <p>
-          © ${new Date().getFullYear()} AdvocateAssam. All Rights Reserved.
-        </p>
-      </div>
+  //       <p>
+  //         © ${new Date().getFullYear()} AdvocateAssam. All Rights Reserved.
+  //       </p>
+  //     </div>
 
-    </div>
+  //   </div>
 
-  </div>
-  `,
-      });
-      console.log("Step 4");
-    } catch (err) {
-      console.log("Email failed:", err);
-    }
+  // </div>
+  // `,
+  //     });
+  //     console.log("Step 4");
+  //   } catch (err) {
+  //     console.log("Email failed:", err);
+  //   }
 
     console.log("Step 5");
 
