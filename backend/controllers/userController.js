@@ -7,7 +7,7 @@ import doctorModel from "../models/doctorModel.js";
 import appointmentModel from "../models/appointmentModel.js";
 import razorpay from "razorpay";
 // import transporter from "../config/nodemailer.js";
-import apiInstance from "./config/brevo.js";
+import apiInstance from "../config/brevo.js";
 
 // API to register User
 const registerUser = async (req, res) => {

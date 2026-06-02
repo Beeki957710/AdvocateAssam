@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import validator from "validator";
 import upload from "../middleware/multer.js";
 import transporter from "../config/nodemailer.js";
-import apiInstance from "./config/brevo.js";
+import apiInstance from "../config/brevo.js";
 
 const applyLawyer = async (req, res) => {
   try {
