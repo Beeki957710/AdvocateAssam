@@ -7,6 +7,7 @@ import adminRouter from './routes/adminRoute.js'
 import doctorRouter from './routes/doctorRoute.js'
 import userRouter from './routes/userRoutes.js'
 import applicationRouter from "./routes/applicationRoute.js"
+import transporter from './config/nodemailer.js'
 
 //app config
 const app = express()
