@@ -123,7 +123,7 @@ const registerUser = async (req, res) => {
         <div style="text-align:center; margin-top:35px;">
 
           <a
-            href="http://localhost:5173"
+            href="https://advocateassam.com"
             style="
               display:inline-block;
               background:#0b2149;

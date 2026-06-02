@@ -24,6 +24,7 @@ const Login = () => {
       if (state === 'Sign Up'){
         const {data} = await axios.post(backendUrl + '/api/user/register', {name, password, email})
         if(data.success) {
+          toast.success("Account created successfully!")
           localStorage.setItem('token', data.token)
           setToken(data.token)
           } else {
@@ -34,6 +35,7 @@ const Login = () => {
       else {
          const {data} = await axios.post(backendUrl + '/api/user/login', {password, email})
           if(data.success) {
+            toast.success("Login successful!")
             localStorage.setItem('token', data.token)
             setToken(data.token)
           } else {
