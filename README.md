@@ -1,10 +1,10 @@
-#  Doctor Appointment System
+#  Lawyer Appointment System
 
-A full-stack web application for booking doctor appointments and managing profiles.
+A full-stack web application for booking lawyer appointments and managing profiles.
 
 ##  Features
 
-* Doctor profile management
+* Lawyer profile management
 * Appointment booking
 * Admin dashboard
 * Availability control
