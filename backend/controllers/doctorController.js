@@ -3,6 +3,155 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import appointmentModel from "../models/appointmentModel.js";
 
+
+
+// API for VerifyAslawyer
+const VerifyAsLawyer = async (req, res) => {
+  try {
+
+    const {
+      name,
+      email,
+      whatsapp,
+      password,
+      speciality,
+      degree,
+      experience,
+      about,
+      fees,
+      address,
+      barCouncilNumber,
+      stateBarCouncil,
+      advocateId
+    } = req.body;
+
+    const imageFile = req.files?.image?.[0];
+    const barCertificateFile = req.files?.barCertificate?.[0];
+    const degreeCertificateFile = req.files?.degreeCertificate?.[0];
+
+    // Check required fields
+    if (
+      !name ||
+      !email ||
+      !password ||
+      !speciality ||
+      !degree ||
+      !experience ||
+      !about ||
+      !fees ||
+      !address
+    ) {
+      return res.json({
+        success: false,
+        message: "Missing Details",
+      });
+    }
+
+    // Email validation
+    if (!validator.isEmail(email)) {
+      return res.json({
+        success: false,
+        message: "Please enter a valid email",
+      });
+    }
+
+    // Password validation
+    if (password.length < 8) {
+      return res.json({
+        success: false,
+        message: "Please enter a strong password",
+      });
+    }
+
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Upload profile image
+    let imageUrl = "";
+
+    if (imageFile) {
+      const imageUpload = await cloudinary.uploader.upload(
+        imageFile.path,
+        { resource_type: "image" }
+      );
+
+      imageUrl = imageUpload.secure_url;
+    }
+
+    // Upload Bar Certificate
+    let barCertificateUrl = "";
+
+    if (barCertificateFile) {
+      const upload = await cloudinary.uploader.upload(
+        barCertificateFile.path,
+        { resource_type: "auto" }
+      );
+
+      barCertificateUrl = upload.secure_url;
+    }
+
+    // Upload Degree Certificate
+    let degreeCertificateUrl = "";
+
+    if (degreeCertificateFile) {
+      const upload = await cloudinary.uploader.upload(
+        degreeCertificateFile.path,
+        { resource_type: "auto" }
+      );
+
+      degreeCertificateUrl = upload.secure_url;
+    }
+
+    const lawyerData = {
+      name,
+      email,
+      whatsapp,
+      password: hashedPassword,
+      image: imageUrl,
+
+      speciality,
+      degree,
+      experience,
+      about,
+
+      fees,
+      address: JSON.parse(address),
+
+      date: Date.now(),
+
+      // Verification Fields
+      barCouncilNumber,
+      stateBarCouncil,
+      advocateId,
+
+      barCertificate: barCertificateUrl,
+      degreeCertificate: degreeCertificateUrl,
+
+      isVerified: false,
+      verificationStatus: "Pending",
+      verifiedAt: null
+    };
+
+    const newLawyer = new doctorModel(lawyerData);
+
+    await newLawyer.save();
+
+    res.json({
+      success: true,
+      message: "Lawyer Added Successfully"
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    res.json({
+      success: false,
+      message: error.message
+    });
+  }
+};
+
 const changeAvailability = async (req, res) => {
   try {
     const { docId } = req.body;
@@ -29,7 +178,9 @@ const doctorList = async (req, res) => {
   }
 };
 
-//API for doctor login
+
+
+//API for lawyer login
 const loginDoctor = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -186,5 +337,6 @@ export {
   appointmentCancel,
   doctorDashboard,
   doctorProfile,
-  updateDoctorProfile
+  updateDoctorProfile,
+  VerifyAsLawyer
 };

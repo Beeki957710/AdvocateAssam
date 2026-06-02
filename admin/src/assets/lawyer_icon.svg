@@ -1,0 +1,31 @@
+<svg width="66" height="65" viewBox="0 0 66 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="66" height="65" rx="16" fill="#F8F6F1"></rect>
+
+  <!-- Dark Blue Lawyer Card -->
+  <rect x="13" y="10" width="40" height="45" rx="12" fill="#071C55"></rect>
+
+  <!-- Head -->
+  <circle cx="33" cy="24" r="7" fill="#F5D7B5"></circle>
+
+  <!-- Hair -->
+  <path d="M26 23C26 18 29 15 33 15C37 15 40 18 40 23" fill="#111827"></path>
+
+  <!-- Body -->
+  <path d="M24 46C24 38 28 34 33 34C38 34 42 38 42 46" fill="white"></path>
+
+  <!-- Coat -->
+  <path d="M26 46L33 36L40 46H26Z" fill="#D4A017"></path>
+
+  <!-- Tie -->
+  <path d="M33 36L35 42L33 46L31 42L33 36Z" fill="#071C55"></path>
+
+  <!-- Law Badge -->
+  <circle cx="48" cy="47" r="9" fill="#D4A017"></circle>
+
+  <path d="M48 41V51" stroke="#071C55" stroke-width="2" stroke-linecap="round"></path>
+
+  <path d="M43 44H53" stroke="#071C55" stroke-width="2" stroke-linecap="round"></path>
+
+  <path d="M45 44L42 48H48L45 44Z" fill="#071C55"></path>
+  <path d="M51 44L48 48H54L51 44Z" fill="#071C55"></path>
+</svg>

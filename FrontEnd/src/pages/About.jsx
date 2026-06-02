@@ -3,42 +3,100 @@ import { assets } from '../assets/assets_frontend/assets'
 
 const About = () => {
   return (
-    <div>
-      <div className='text-center text-2xl pt-10 text-gray-500'>
-        <p>ABOUT</p> <span className='text-gray-700 font-medium'>US</span>
+    <div className='px-6 md:px-12 lg:px-20'>
+
+      {/* Heading */}
+      <div className='text-center text-3xl pt-10'>
+        <p className='text-gray-500'>
+          ABOUT <span className='text-primary font-semibold'>US</span>
+        </p>
       </div>
 
-      <div className='my-10 flex flex-col md:flex-row gap-12'>
-        <img className='w-full md:max-w-[360px]' src={assets.about_image} alt="" />
-        <div className='flex flex-col justify-center gap-6 md:w-2/4 text-sm text-gray-600'>
-          <p>Welcome to Prescripto, your trusted partner in managing your healthcare needs conveniently and efficiently. At Prescripto, we understand the challenges individuals face when it comes to scheduling doctor appointments and managing their health records.</p>
-          <p>Prescripto is committed to excellence in healthcare technology. We continuously strive to enhance our platform, integrating the latest advancements to improve user experience and deliver superior service. Whether you're booking your first appointment or managing ongoing care, Prescripto is here to support you every step of the way.</p>
-          <b className='text-gray-800'>Our Vision</b>
-          <p>Our vision at Prescripto is to create a seamless healthcare experience for every user. We aim to bridge the gap between patients and healthcare providers, making it easier for you to access the care you need, when you need it.</p>
+      {/* About Section */}
+      <div className='my-14 flex flex-col md:flex-row gap-12 items-center'>
+
+        <img
+          className='w-full md:max-w-[420px] rounded-2xl shadow-lg'
+          src={assets.about_image}
+          alt="About"
+        />
+
+        <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600 leading-7'>
+
+          <p>
+            Welcome to our law firm, where professionalism,
+            integrity, and dedication form the foundation of our
+            legal practice. We are committed to providing reliable
+            legal solutions tailored to the unique needs of every client.
+          </p>
+
+          <p>
+            With years of experience across multiple areas of law,
+            our team works diligently to protect your rights,
+            resolve disputes efficiently, and deliver strong legal
+            representation with complete transparency and trust.
+          </p>
+
+          <div>
+            <h2 className='text-xl font-semibold text-primary mb-2'>
+              Our Vision
+            </h2>
+
+            <p>
+              Our vision is to become a trusted legal partner for
+              individuals and businesses by delivering exceptional
+              legal services, building long-term relationships,
+              and ensuring justice through expert legal guidance.
+            </p>
+          </div>
+
         </div>
       </div>
 
-      <div className='text-xl my-4 text-center'>
-        <p>WHY</p> <span className='text-gray-700 font-semibold'>CHOOSE US</span>
+      {/* Why Choose Us */}
+      <div className='text-3xl text-center my-10'>
+        <p className='text-gray-500'>
+          WHY <span className='text-primary font-semibold'>CHOOSE US</span>
+        </p>
       </div>
 
-      <div className='flex flex-col md:flex-row mb-20'>
-        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer'>
-          <b>Efficiency: </b>
-          <p>Streamlined appointment scheduling that fits into your busy lifestyle.</p>
+      {/* Cards */}
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-20'>
+
+        <div className='border rounded-2xl px-8 py-10 flex flex-col gap-4 hover:bg-primary hover:text-white transition-all duration-300 shadow-sm'>
+          <h3 className='text-xl font-semibold'>
+            Experienced Attorneys
+          </h3>
+
+          <p className='text-sm leading-6'>
+            Our legal team brings extensive knowledge and years of
+            courtroom and advisory experience across multiple legal areas.
+          </p>
         </div>
 
-        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer'>
-          <b>CONVENIENCE: </b>
-          <p>Access to a network of trusted healthcare professionals in your area.</p>
+        <div className='border rounded-2xl px-8 py-10 flex flex-col gap-4 hover:bg-primary hover:text-white transition-all duration-300 shadow-sm'>
+          <h3 className='text-xl font-semibold'>
+            Client-Focused Approach
+          </h3>
+
+          <p className='text-sm leading-6'>
+            We prioritize clear communication, transparency, and
+            personalized legal strategies designed for every client.
+          </p>
         </div>
 
-        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer'>
-          <b>PERSONALIZATION:</b>
-          <p>Tailored recommendations and reminders to help you stay on top of your health.</p>
+        <div className='border rounded-2xl px-8 py-10 flex flex-col gap-4 hover:bg-primary hover:text-white transition-all duration-300 shadow-sm'>
+          <h3 className='text-xl font-semibold'>
+            Trusted Legal Support
+          </h3>
+
+          <p className='text-sm leading-6'>
+            From consultation to representation, we are dedicated
+            to protecting your rights and achieving the best possible outcome.
+          </p>
         </div>
+
       </div>
-      
 
     </div>
   )

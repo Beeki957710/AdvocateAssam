@@ -4,7 +4,7 @@ import group_profiles from './group_profiles.png'
 import profile_pic from './profile_pic.png'
 import contact_image from './contact_image.png'
 import about_image from './about_image.png'
-import logo from './logo.svg'
+import logo from './logo.png'
 import dropdown_icon from './dropdown_icon.svg'
 import menu_icon from './menu_icon.svg'
 import cross_icon from './cross_icon.png'
@@ -30,12 +30,16 @@ import doc12 from './doc12.png'
 import doc13 from './doc13.png'
 import doc14 from './doc14.png'
 import doc15 from './doc15.png'
-import Dermatologist from './Dermatologist.svg'
-import Gastroenterologist from './Gastroenterologist.svg'
-import General_physician from './General_physician.svg'
-import Gynecologist from './Gynecologist.svg'
-import Neurologist from './Neurologist.svg'
-import Pediatricians from './Pediatricians.svg'
+import criminal_icon from './criminal_icon.svg'
+import family_icon from './family_icon.svg'
+import corporate_icon from './corporate_icon.svg'
+import civil_icon from './civil_icon.svg'
+import property_icon from './property_icon.svg'
+import cyber_icon from './cyber_icon.svg'
+// import consumer_icon from './consumer_icon.svg'
+// import tax_icon from './tax_icon.svg'
+// import divorce_icon from './divorce_icon.svg'
+// import immigration_icon from './immigration_icon.svg'
 
 
 export const assets = {
@@ -59,30 +63,30 @@ export const assets = {
 }
 
 export const specialityData = [
-    {
-        speciality: 'General physician',
-        image: General_physician
-    },
-    {
-        speciality: 'Gynecologist',
-        image: Gynecologist
-    },
-    {
-        speciality: 'Dermatologist',
-        image: Dermatologist
-    },
-    {
-        speciality: 'Pediatricians',
-        image: Pediatricians
-    },
-    {
-        speciality: 'Neurologist',
-        image: Neurologist
-    },
-    {
-        speciality: 'Gastroenterologist',
-        image: Gastroenterologist
-    },
+  {
+    speciality: 'Criminal Law',
+    image: criminal_icon
+  },
+  {
+    speciality: 'Family Law',
+    image: family_icon
+  },
+  {
+    speciality: 'Corporate Law',
+    image: corporate_icon
+  },
+  {
+    speciality: 'Civil Law',
+    image: civil_icon
+  },
+  {
+    speciality: 'Property Law',
+    image: property_icon
+  },
+  {
+    speciality: 'Cyber Law',
+    image: cyber_icon
+  }
 ]
 
 export const doctors = [

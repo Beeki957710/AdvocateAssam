@@ -6,10 +6,11 @@ import connectCloudinary from './config/cloudinary.js'
 import adminRouter from './routes/adminRoute.js'
 import doctorRouter from './routes/doctorRoute.js'
 import userRouter from './routes/userRoutes.js'
+import applicationRouter from "./routes/applicationRoute.js"
 
 //app config
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 5000
 connectDB()
 connectCloudinary()
 
@@ -22,7 +23,8 @@ app.use(cors())
 app.use('/api/admin', adminRouter)
 app.use('/api/doctor', doctorRouter)
 app.use('/api/user', userRouter)
-//localhost:4000/api/admin/add-doctor
+app.use("/api/application",applicationRouter);
+//localhost:5000/api/admin/add-doctor
 
 
 app.get('/', (req, res)=>{

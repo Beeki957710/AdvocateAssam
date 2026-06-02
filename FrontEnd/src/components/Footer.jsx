@@ -3,38 +3,76 @@ import { assets } from '../assets/assets_frontend/assets'
 
 const Footer = () => {
   return (
-    <div className='md:mx-10'>
-        <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
+ <footer className='w-screen bg-[#ffffff] text-gray-300 mt-24 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]'>
 
-            <div>
-                <img className='mb-5 w-40' src={assets.logo} alt="" />
-                <p className='w-full md:w-2/3 text-gray-600 leading-6'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-            </div>
+  <div className='px-6 md:px-16 lg:px-24 py-10'>
 
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm'>
 
-            <div>
-                <p className='text-xl font-medium mb-5'>Company</p>
-                <ul className='flex flex-col gap-2 text-gray-600'>
-                    <li>Home</li>
-                    <li>About us</li>
-                    <li>Contact us</li>
-                    <li>Privacy policy</li>
-                </ul>
-            </div>
+      {/* About */}
+      <div>
+        <img
+          className='w-40 mb-4'
+          src={assets.logo}
+          alt="Logo"
+        />
 
-            <div>
-                <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
-                <ul className='flex flex-col gap-2 text-gray-600'>
-                    <li>+1-212-324-8564</li>
-                    <li>xyz@gmail.com</li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <hr />
-            <p className='py-5 text-sm text-center'>Copyright 2026  - All Right Reserved.</p>
-        </div>
-    </div>    
+        <p className='text-gray-400 leading-7'>
+          Trusted legal services with professionalism and dedication.
+        </p>
+      </div>
+
+      {/* Links */}
+      <div>
+        <h3 className='text-white font-semibold mb-4'>
+          Quick Links
+        </h3>
+
+        <ul className='space-y-2 text-gray-400'>
+          <li className='hover:text-primary cursor-pointer'>Home</li>
+          <li className='hover:text-primary cursor-pointer'>About</li>
+          <li className='hover:text-primary cursor-pointer'>Services</li>
+          <li className='hover:text-primary cursor-pointer'>Contact</li>
+        </ul>
+      </div>
+
+      {/* Services */}
+      <div>
+        <h3 className='text-white font-semibold mb-4'>
+          Services
+        </h3>
+
+        <ul className='space-y-2 text-gray-400'>
+          <li>Criminal Law</li>
+          <li>Family Law</li>
+          <li>Corporate Law</li>
+          <li>Legal Advice</li>
+        </ul>
+      </div>
+
+      {/* Contact */}
+      <div>
+        <h3 className='text-white font-semibold mb-4'>
+          Contact
+        </h3>
+
+        <ul className='space-y-2 text-gray-400'>
+          <li>📞 +91 XXXXX XXXXX</li>
+          <li>✉️ support.advocateassam@gmail.com</li>
+          <li>📍 Office Address</li>
+        </ul>
+      </div>
+
+    </div>
+
+    {/* Bottom */}
+    <div className='border-t border-white/10 mt-8 pt-4 text-center text-xs text-gray-500'>
+      © 2026 Justice & Associates. All Rights Reserved.
+    </div>
+
+  </div>
+
+</footer>
   )
 }
 

@@ -1,72 +1,152 @@
-import React, { useContext, useState } from 'react'
-import { assets } from '../assets/assets'
-import { AdminContext } from '../context/AdminContext'
-import axios from 'axios'
-import { toast } from 'react-toastify'
-import { DoctorContext } from '../context/DoctorContext'
+import React, { useContext, useState } from "react";
+import { AdminContext } from "../context/AdminContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { DoctorContext } from "../context/DoctorContext";
+import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [state, setState] = useState("Admin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [state, setState] = useState('Admin')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const { setAToken, backendUrl } = useContext(AdminContext);
+  const { setDToken } = useContext(DoctorContext);
 
-    const {setAToken, backendUrl} = useContext(AdminContext)
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
 
-    const { setDToken } = useContext(DoctorContext)
+    try {
+      // ADMIN LOGIN
 
-    const onSubmitHandler = async (event) => {
+      if (state === "Admin") {
+        const { data } = await axios.post(backendUrl + "/api/admin/login", {
+          email,
+          password,
+        });
 
-      event.preventDefault()
-
-      try {
-        if (state === 'Admin'){
-          const {data} = await axios.post(backendUrl + '/api/admin/login', {email, password})
-          if (data.success) {
-            localStorage.setItem('aToken', data.token)
-            setAToken(data.token)
-          }
-          else {
-            toast.error(data.message)
-          }
+        if (data.success) {
+          localStorage.setItem("aToken", data.token);
+          setAToken(data.token);
         } else {
-            const {data} = await axios.post(backendUrl + '/api/doctor/login', {email, password})
-             if (data.success) {
-               localStorage.setItem('dToken', data.token)
-               setDToken(data.token)
-               console.log(data.token)
-             }
-          else {
-            toast.error(data.message)
-          }
+          toast.error(data.message);
         }
-
-      } catch (error) {
-         toast.error(error.message)
       }
+
+      // LAWYER LOGIN
+      else {
+        const { data } = await axios.post(backendUrl + "/api/doctor/login", {
+          email,
+          password,
+        });
+
+        if (data.success) {
+          localStorage.setItem("dToken", data.token);
+          setDToken(data.token);
+        } else {
+          toast.error(data.message);
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
+  };
 
   return (
-    <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center">
-        <div className='flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5E5E5E] text-sm shadow-lg'>
-            <p className='text-2xl font-semibold m-auto'><span className='text-[#5f6FFF]' > {state} </span > Login </p>
-            <div className='w-full'>
-              <p>Email</p>
-              <input onChange={(e)=>setEmail(e.target.value)} value={email} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="email" required/>
-            </div>
-            <div className='w-full'>
-              <p>Password</p>
-              <input onChange={(e)=>setPassword(e.target.value)} value={password} className='border border-[#DADADA] rounded w-full p-2 mt-1' type="password" required/>
-            </div>
-            <button className='bg-[#5f6FFF] text-white w-full py-2 rounded-md text-base'>Login</button>
-            {
-              state === 'Admin'
-              ? <p>Doctor Login? <span className='text-[#5f6FFF] underline cursor-pointer' onClick={()=>setState('Doctor')}>Click here</span></p>
-              : <p>Admin Login? <span className='text-[#5f6FFF] underline cursor-pointer' onClick={()=>setState('Admin')}>Click here</span></p>
-            }
-        </div>
-    </form>
-  )
-}
+    <div className="min-h-screen flex items-center justify-center bg-[#F5F7FB]">
+      <form
+        onSubmit={onSubmitHandler}
+        className="bg-white shadow-xl rounded-3xl p-10 w-[95%] max-w-md border border-gray-100"
+      >
+        {/* Heading */}
 
-export default Login
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-[#071C55]">
+            {state === "Admin" ? "Admin" : "Lawyer"}
+
+            <span className="text-[#D4A017]"> Login</span>
+          </h1>
+
+          <p className="text-gray-500 mt-3 text-sm">
+            Welcome back to NyaySetu Dashboard
+          </p>
+        </div>
+
+        {/* Email */}
+
+        <div className="mb-5">
+          <label className="text-sm font-medium text-[#071C55]">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            className="w-full mt-2 px-4 py-3 border border-gray-300 rounded-2xl outline-none focus:border-[#071C55] transition-all"
+          />
+        </div>
+
+        {/* Password */}
+
+        <div className="mb-6">
+          <label className="text-sm font-medium text-[#071C55]">Password</label>
+
+          <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+            className="w-full mt-2 px-4 py-3 border border-gray-300 rounded-2xl outline-none focus:border-[#071C55] transition-all"
+          />
+        </div>
+
+        {/* Login Button */}
+
+        <button
+          type="submit"
+          className="w-full bg-[#071C55] hover:bg-[#0B2D83] text-white py-3 rounded-2xl font-semibold text-lg transition-all duration-300"
+        >
+          Login
+        </button>
+
+        {/* Switch Login */}
+
+        <div className="text-center mt-6 text-sm">
+          {state === "Admin" ? (
+            <p className="text-gray-600">
+              Lawyer Login?{" "}
+              <span
+                onClick={() => setState("Lawyer")}
+                className="text-[#071C55] font-semibold cursor-pointer hover:underline"
+              >
+                Click here
+              </span>
+            </p>
+          ) : (
+            <p className="text-gray-600">
+              Admin Login?{" "}
+              <span
+                onClick={() => setState("Admin")}
+                className="text-[#071C55] font-semibold cursor-pointer hover:underline"
+              >
+                Click here
+              </span>
+            </p>
+          )}
+          <p className="text-sm">
+            New Lawyer?{" "}
+            <Link to="/verify-lawyer" className="text-primary underline">
+              Apply Here
+            </Link>
+          </p>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Login;

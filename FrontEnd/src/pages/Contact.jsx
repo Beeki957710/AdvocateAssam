@@ -3,25 +3,69 @@ import { assets } from '../assets/assets_frontend/assets'
 
 const Contact = () => {
   return (
-    <div>
-      <div className='text-center text-2xl pt-10 text-gray-500'>
-        <p>CONTACT</p><span className='text-gray-700 font-semibold'>US</span>
+    <div className='px-6 md:px-12 lg:px-20'>
+
+      {/* Heading */}
+      <div className='text-center text-3xl pt-10'>
+        <p className='text-gray-500'>
+          CONTACT <span className='text-primary font-semibold'>US</span>
+        </p>
       </div>
 
-      <div className='my-10 flex flex-col justify-center md:flex-row gap-10 mb-28 text-sm'>
-        <img className='w-full md:max-w-[360px]' src={assets.contact_image} alt="" />
+      {/* Contact Section */}
+      <div className='my-14 flex flex-col md:flex-row items-center gap-12 mb-24'>
 
-        <div className='flex flex-col justify-center items-start gap-6'>
-          <p className='font-semibold text-lg text-gray-600'>OUR OFFICE</p>
-          <p className='text-gray-500'>00000 Willms Station <br />
-          Suite 000, Washington, USA</p>
-          <p className='text-gray-500'>Tel: (000) 000-0000 <br />
-          Email: greatstackdev@gmail.com</p>
-          <p className='font-semibold text-lg text-gray-600'>CAREERS AT PRESCRIPTO</p>
-          <p className='text-gray-500'>Learn more about our teams and job openings.</p>
-          <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore Jobs</button>
+        {/* Image */}
+        <img
+          className='w-full md:max-w-[450px] rounded-2xl shadow-lg'
+          src={assets.contact_image}
+          alt="Law Office"
+        />
+
+        {/* Contact Info */}
+        <div className='flex flex-col justify-center items-start gap-7 text-gray-600'>
+
+          {/* Office */}
+          <div>
+            <h2 className='font-semibold text-2xl text-primary mb-3'>
+              Our Office
+            </h2>
+
+            <p className='leading-7 text-gray-500'>
+              AdvocateAssam <br />
+              Rangia, Assam, India
+            </p>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p className='leading-7 text-gray-500'>
+              📞 +91 XXXX XXXXX<br />
+              ✉️ support.advocateassam@gmail.com
+            </p>
+          </div>
+
+          {/* Consultation */}
+          <div>
+            <h2 className='font-semibold text-2xl text-primary mb-3'>
+              Legal Consultation
+            </h2>
+
+            <p className='leading-7 text-gray-500'>
+              Schedule a confidential consultation with our experienced
+              legal team and receive trusted legal guidance tailored
+              to your needs.
+            </p>
+          </div>
+
+          {/* Button */}
+          <button className='border border-primary text-primary px-8 py-4 rounded-lg text-sm font-medium hover:bg-primary hover:text-white transition-all duration-500'>
+            Book Consultation
+          </button>
+
         </div>
       </div>
+
     </div>
   )
 }

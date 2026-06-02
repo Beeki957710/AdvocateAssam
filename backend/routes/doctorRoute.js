@@ -1,10 +1,11 @@
 import express from 'express'
-import { doctorList, loginDoctor, appointmentsDoctor, appointmentCancel, appointmentComplete, doctorDashboard, doctorProfile, updateDoctorProfile} from '../controllers/doctorController.js'
+import { doctorList, loginDoctor, appointmentsDoctor, appointmentCancel, appointmentComplete, doctorDashboard, doctorProfile, updateDoctorProfile, VerifyAsLawyer} from '../controllers/doctorController.js'
 import authDoctor from '../middleware/authDoctor.js'
+import upload from '../middleware/multer.js'
 
 const doctorRouter = express.Router()
 
-
+doctorRouter.post('/verify-lawyer',authDoctor,upload.fields([{ name: 'image', maxCount: 1 },{ name: 'barCertificate', maxCount: 1 },{ name: 'degreeCertificate', maxCount: 1 }]), VerifyAsLawyer)
 doctorRouter.get('/list', doctorList)
 doctorRouter.post('/login', loginDoctor)
 doctorRouter.get('/appointments', authDoctor, appointmentsDoctor)
