@@ -226,7 +226,7 @@ const approveLawyer = async (req, res) => {
 
     //Email sending
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: process.env.BREVO_USER,
       to: application.email,
 
       subject: "Welcome to AdvocateAssam - Lawyer Account Approved ⚖️",

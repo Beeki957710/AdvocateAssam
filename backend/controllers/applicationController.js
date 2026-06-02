@@ -125,7 +125,7 @@ const applyLawyer = async (req, res) => {
     //Email sending
 
     await transporter.sendMail({
-  from: process.env.EMAIL_USER,
+  from: process.env.BREVO_USER,
 
   to: email,
 

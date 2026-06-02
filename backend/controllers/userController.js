@@ -50,7 +50,7 @@ const registerUser = async (req, res) => {
 
   //   try {
   //     await transporter.sendMail({
-  //       from: process.env.EMAIL_USER,
+  //       from: process.env.BREVO_USER,
   //       to: userData.email,
 
   //       subject: "Welcome to AdvocateAssam - Your Account Has Been Created ⚖️",
