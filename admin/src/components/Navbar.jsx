@@ -43,7 +43,13 @@ const Navbar = () => {
         </div>
         {/* Client Button */}
         <button
-          onClick={() => (window.location.href = "http://localhost:5175")}
+          onClick={() =>
+            window.open(
+              "https://advocateassam.com",
+              "_blank",
+              "noopener,noreferrer",
+            )
+          }
           className="text-[10px] sm:text-xs bg-[#0b2149] text-white px-2.5 sm:px-3 py-1 rounded-full shadow-md border border-[#d4af37] hover:bg-[#14367a]  hover:scale-105 transition-all duration-300 whitespace-nowrap"
         >
           Client
