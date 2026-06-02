@@ -20,7 +20,8 @@ app.use(cors({
   origin: [
     "https://advocateassam.com",
     "https://www.advocateassam.com",
-    "https://advocate-assam.vercel.app"
+    "https://advocate-assam.vercel.app",
+    "https://api.advocateassam.com"
   ],
   credentials: true
 }))
