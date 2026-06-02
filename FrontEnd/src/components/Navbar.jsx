@@ -28,7 +28,13 @@ const Navbar = () => {
 
         {/* Admin / Lawyer Button */}
         <button
-          onClick={() => (window.location.href = "http://localhost:5176")}
+          onClick={() =>
+            window.open(
+              "https://api.advocateassam.com",
+              "_blank",
+              "noopener,noreferrer",
+            )
+          }
           className="text-[11px] sm:text-xs bg-[#0b2149] text-white px-3 py-1 rounded-full shadow-md border border-[#d4af37] hover:bg-[#14367a] hover:scale-105 transition-all duration-300"
         >
           Admin / Lawyer
@@ -37,22 +43,30 @@ const Navbar = () => {
 
       <ul className="hidden md:flex items-start gap-5 font-medium">
         <NavLink to="/">
-          <li className="py-1 hover:scale-105 transition-all duration-300">HOME</li>
+          <li className="py-1 hover:scale-105 transition-all duration-300">
+            HOME
+          </li>
           <hr className="border-none outline-none h-0.5 bg-[#5f6FFF]  w-3/5 m-auto hidden" />
         </NavLink>
 
         <NavLink to="/doctors">
-          <li className="py-1 hover:scale-105 transition-all duration-300">ALL LAWYERS</li>
+          <li className="py-1 hover:scale-105 transition-all duration-300">
+            ALL LAWYERS
+          </li>
           <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] w-3/5 m-auto hidden" />
         </NavLink>
 
         <NavLink to="/about">
-          <li className="py-1 hover:scale-105 transition-all duration-300">ABOUT</li>
+          <li className="py-1 hover:scale-105 transition-all duration-300">
+            ABOUT
+          </li>
           <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] w-3/5 m-auto hidden" />
         </NavLink>
 
         <NavLink to="/contact">
-          <li className="py-1 hover:scale-105 transition-all duration-300">CONTACT</li>
+          <li className="py-1 hover:scale-105 transition-all duration-300">
+            CONTACT
+          </li>
           <hr className="border-none outline-none h-0.5 bg-[#5f6FFF]  w-3/5 m-auto hidden" />
         </NavLink>
       </ul>
