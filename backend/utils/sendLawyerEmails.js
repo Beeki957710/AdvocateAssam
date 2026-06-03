@@ -10,7 +10,7 @@ export const sendApplicationSubmittedEmail = async (lawyerData) => {
       body: JSON.stringify({
         sender: {
           name: "AdvocateAssam",
-          email: "support.advocateassam@gmail.com",
+          email: "support@advocateassam.com",
         },
 
         to: [
@@ -84,7 +84,7 @@ export const sendApplicationApprovedEmail = async (lawyerData) => {
       body: JSON.stringify({
         sender: {
           name: "AdvocateAssam",
-          email: "support.advocateassam@gmail.com",
+          email: "support@advocateassam.com",
         },
 
         to: [
@@ -164,7 +164,7 @@ export const sendApplicationRejectedEmail = async (lawyerData) => {
       body: JSON.stringify({
         sender: {
           name: "AdvocateAssam",
-          email: "support.advocateassam@gmail.com",
+          email: "support@advocateassam.com",
         },
 
         to: [
