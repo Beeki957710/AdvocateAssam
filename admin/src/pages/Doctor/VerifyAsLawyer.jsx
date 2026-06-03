@@ -75,7 +75,7 @@ const VerifyAsLawyer = () => {
       );
 
       if (data.success) {
-        toast.success("Lawyer Added Successfully");
+        toast.success("Application Submitted Successfully");
 
         setLoading(false);
         setDocImg(false);
@@ -132,7 +132,7 @@ const VerifyAsLawyer = () => {
               </h1>
 
               <p className="mt-3 text-gray-200 max-w-2xl">
-                Join NyaySetu and connect with clients seeking trusted legal
+                Join AdvocateAssam and connect with clients seeking trusted legal
                 professionals. Submit your professional credentials for review
                 and verification.
               </p>

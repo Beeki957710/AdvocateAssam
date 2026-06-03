@@ -8,6 +8,48 @@ import appointmentModel from "../models/appointmentModel.js";
 import razorpay from "razorpay";
 // import transporter from "../config/nodemailer.js";
 
+const sendWelcomeEmail = async (userData) => {
+  try {
+    const response = await fetch(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "api-key": process.env.BREVO_API_KEY,
+        },
+        body: JSON.stringify({
+          sender: {
+            name: "AdvocateAssam",
+            email: "support@advocateassam.com",
+          },
+
+          to: [
+            {
+              email: userData.email,
+              name: userData.name,
+            },
+          ],
+
+          subject: "Welcome to AdvocateAssam",
+
+          htmlContent: `
+            <h2>Welcome ${userData.name}</h2>
+            <p>Your account has been created successfully.</p>
+          `,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("Brevo Response:", data);
+  } catch (err) {
+    console.log("Email Failed:", err);
+  }
+};
+
 
 // API to register User
 const registerUser = async (req, res) => {
@@ -48,6 +90,8 @@ const registerUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 //////////////
     console.log("Step 3");
+
+    await sendWelcomeEmail(userData);
 
   //   try {
   //     await transporter.sendMail({

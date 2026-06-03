@@ -68,7 +68,7 @@ const Login = () => {
           </h1>
 
           <p className="text-gray-500 mt-3 text-sm">
-            Welcome back to NyaySetu Dashboard
+            Welcome back to AdvocateAssam Dashboard
           </p>
         </div>
 

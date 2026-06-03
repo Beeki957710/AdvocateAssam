@@ -3,7 +3,7 @@ import { v2 as cloudinary } from "cloudinary";
 import bcrypt from "bcrypt";
 import validator from "validator";
 import upload from "../middleware/multer.js";
-import transporter from "../config/nodemailer.js";
+// import transporter from "../config/nodemailer.js";
 
 
 const applyLawyer = async (req, res) => {
@@ -125,29 +125,29 @@ const applyLawyer = async (req, res) => {
 
     //Email sending
 
-    await transporter.sendMail({
-  from: process.env.BREVO_USER,
+//     await transporter.sendMail({
+//   from: process.env.BREVO_USER,
 
-  to: email,
+//   to: email,
 
-  subject: "AdvocateAssam Application Received",
+//   subject: "AdvocateAssam Application Received",
 
-  html: `
-    <h2>Application Submitted</h2>
+//   html: `
+//     <h2>Application Submitted</h2>
 
-    <p>
-      Dear ${name},
-    </p>
+//     <p>
+//       Dear ${name},
+//     </p>
 
-    <p>
-      We have received your lawyer verification request.
-    </p>
+//     <p>
+//       We have received your lawyer verification request.
+//     </p>
 
-    <p>
-      Our team will review your documents shortly.
-    </p>
-  `,
-});
+//     <p>
+//       Our team will review your documents shortly.
+//     </p>
+//   `,
+// });
 
     res.json({
       success: true,
