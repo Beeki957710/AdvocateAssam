@@ -146,6 +146,48 @@ const Doctors = () => {
           >
             Consumer Lawyer
           </p>
+             <p
+            onClick={() =>
+              speciality === "Tax Law"
+                ? navigate("/doctors")
+                : navigate("/doctors/Tax Law")
+            }
+            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
+              speciality === "Consumer Law"
+                ? "bg-primary text-white border-primary"
+                : "hover:border-primary"
+            }`}
+          >
+            Tax Lawyer
+          </p>
+             <p
+            onClick={() =>
+              speciality === "Environment Law"
+                ? navigate("/doctors")
+                : navigate("/doctors/Environment Law")
+            }
+            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
+              speciality === "Consumer Law"
+                ? "bg-primary text-white border-primary"
+                : "hover:border-primary"
+            }`}
+          >
+            Environment Lawyer
+          </p>
+             <p
+            onClick={() =>
+              speciality === "Constitution Law"
+                ? navigate("/doctors")
+                : navigate("/doctors/Constitution Law")
+            }
+            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
+              speciality === "Constittution Law"
+                ? "bg-primary text-white border-primary"
+                : "hover:border-primary"
+            }`}
+          >
+            Constitution Lawyer
+          </p>
         </div>
 
         {/* Cards */}
