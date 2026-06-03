@@ -132,6 +132,20 @@ const Doctors = () => {
           >
             Cyber Lawyer
           </p>
+           <p
+            onClick={() =>
+              speciality === "Consumer Law"
+                ? navigate("/doctors")
+                : navigate("/doctors/Consumer Law")
+            }
+            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
+              speciality === "Consumer Law"
+                ? "bg-primary text-white border-primary"
+                : "hover:border-primary"
+            }`}
+          >
+            Consumer Lawyer
+          </p>
         </div>
 
         {/* Cards */}
