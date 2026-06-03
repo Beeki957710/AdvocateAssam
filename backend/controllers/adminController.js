@@ -13,7 +13,6 @@ import {
   sendApplicationRejectedEmail,
 } from "../utils/sendLawyerEmails.js";
 
-
 // API for adding lawyer
 const addDoctor = async (req, res) => {
   try {
@@ -230,11 +229,17 @@ const approveLawyer = async (req, res) => {
 
     await lawyer.save();
 
-    await sendApplicationApprovedEmail(lawyerData);
-
+    // Delete application
     await lawyerApplicationModel.findByIdAndDelete(applicationId);
 
-    res.json({
+    // Send approval email
+    try {
+      await sendApplicationApprovedEmail(lawyerData);
+    } catch (emailError) {
+      console.log("Email sending failed:", emailError);
+    }
+
+    return res.json({
       success: true,
       message: "Lawyer Approved",
     });
@@ -260,18 +265,29 @@ const rejectLawyer = async (req, res) => {
       });
     }
 
-    await sendApplicationRejectedEmail(lawyerData);
+    const lawyerData = {
+      name: application.name,
+      email: application.email,
+    };
 
+    // Send rejection email
+    try {
+      await sendApplicationRejectedEmail(lawyerData);
+    } catch (emailError) {
+      console.log("Email sending failed:", emailError);
+    }
+
+    // Delete application
     await lawyerApplicationModel.findByIdAndDelete(applicationId);
 
-    res.json({
+    return res.json({
       success: true,
       message: "Lawyer Application Rejected",
     });
   } catch (error) {
     console.log(error);
 
-    res.json({
+    return res.json({
       success: false,
       message: error.message,
     });

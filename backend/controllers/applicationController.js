@@ -9,10 +9,8 @@ import {
   sendApplicationRejectedEmail,
 } from "../utils/sendLawyerEmails.js";
 
-
 const applyLawyer = async (req, res) => {
   try {
-
     const {
       name,
       email,
@@ -61,24 +59,18 @@ const applyLawyer = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Upload lawyer photo
-    const imageUpload = await cloudinary.uploader.upload(
-      imageFile.path,
-      {
-        resource_type: "image",
-      }
-    );
+    const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
+      resource_type: "image",
+    });
 
     // Upload certificates
     let barCertificateUrl = "";
     let degreeCertificateUrl = "";
 
     if (barCertificateFile) {
-      const upload = await cloudinary.uploader.upload(
-        barCertificateFile.path,
-        {
-          resource_type: "auto",
-        }
-      );
+      const upload = await cloudinary.uploader.upload(barCertificateFile.path, {
+        resource_type: "auto",
+      });
 
       barCertificateUrl = upload.secure_url;
     }
@@ -88,7 +80,7 @@ const applyLawyer = async (req, res) => {
         degreeCertificateFile.path,
         {
           resource_type: "auto",
-        }
+        },
       );
 
       degreeCertificateUrl = upload.secure_url;
@@ -126,22 +118,26 @@ const applyLawyer = async (req, res) => {
 
     await application.save();
 
-    res.json({
+    // Send application submitted email
+    try {
+      
+      await sendApplicationSubmittedEmail(applicationData);
+
+    } catch (emailError) {
+      console.log("Application email failed:", emailError);
+    }
+
+    return res.json({
       success: true,
       message: "Application Submitted Successfully",
     });
-
-    await sendApplicationSubmittedEmail(lawyerData);
-
   } catch (error) {
-
     console.log(error);
 
     res.json({
       success: false,
       message: error.message,
     });
-
   }
 };
 
