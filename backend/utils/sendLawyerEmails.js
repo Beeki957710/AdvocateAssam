@@ -123,7 +123,7 @@ export const sendApplicationApprovedEmail = async (lawyerData) => {
               </p>
 
               <div style="text-align:center;margin-top:30px;">
-                <a href="https://admin.advocateassam.com"
+                <a href="https://api.advocateassam.com"
                   style="background:#0b2149;color:white;padding:14px 30px;text-decoration:none;border-radius:8px;">
                   Open Lawyer Dashboard
                 </a>
