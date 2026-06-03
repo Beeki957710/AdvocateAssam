@@ -121,6 +121,16 @@ const Appointment = () => {
     }
   };
 
+  const handleWhatsAppClick = () => {
+    if (!token) {
+      toast.error("Please login first");
+      navigate("/login");
+      return;
+    }
+
+    window.open(`https://wa.me/${docInfo.whatsapp}`, "_blank");
+  };
+
   useEffect(() => {
     fetchDocInfo();
   }, [doctors, docId]);
@@ -168,11 +178,10 @@ const Appointment = () => {
               </div>
 
               {/* WhatsApp Button */}
-              <a
-                href={`https://wa.me/${docInfo.whatsapp}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105">
+              <button
+                onClick={handleWhatsAppClick}
+                className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-full shadow-md transition-all duration-300 hover:scale-105"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 32 32"
@@ -181,7 +190,7 @@ const Appointment = () => {
                   <path d="M16.004 3C8.822 3 3 8.822 3 16.004c0 2.602.764 5.126 2.21 7.285L3 29l5.89-2.154a12.95 12.95 0 007.114 2.116h.005C23.182 28.962 29 23.14 29 15.958 29 8.822 23.182 3 16.004 3zm0 23.692a10.63 10.63 0 01-5.414-1.485l-.388-.23-3.494 1.277 1.317-3.407-.253-.398a10.61 10.61 0 01-1.635-5.69c0-5.893 4.796-10.689 10.689-10.689 5.893 0 10.689 4.796 10.689 10.689 0 5.893-4.796 10.689-10.689 10.689zm5.865-7.93c-.32-.16-1.894-.935-2.187-1.04-.293-.106-.507-.16-.72.16-.213.32-.827 1.04-1.014 1.253-.187.213-.373.24-.693.08-.32-.16-1.35-.497-2.57-1.585-.95-.847-1.59-1.894-1.774-2.214-.187-.32-.02-.493.14-.653.144-.143.32-.373.48-.56.16-.187.213-.32.32-.533.106-.213.053-.4-.027-.56-.08-.16-.72-1.734-.987-2.374-.26-.625-.525-.54-.72-.55l-.613-.01c-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667s1.147 3.094 1.307 3.307c.16.213 2.26 3.45 5.475 4.837.765.33 1.36.527 1.825.674.767.244 1.465.21 2.016.127.615-.092 1.894-.773 2.16-1.52.267-.747.267-1.387.187-1.52-.08-.133-.293-.213-.613-.373z" />
                 </svg>
                 Chat on WhatsApp
-              </a>
+              </button>
             </div>
 
             <div className="flex items-center gap-2 text-sm mt-1 text-gray-600">
