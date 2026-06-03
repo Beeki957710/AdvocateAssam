@@ -6,7 +6,12 @@ import jwt from "jsonwebtoken";
 import appointmentModel from "../models/appointmentModel.js";
 import userModel from "../models/userModel.js";
 import lawyerApplicationModel from "../models/lawyerApplicationModel.js";
-// import transporter from "../config/nodemailer.js";
+
+import {
+  sendApplicationSubmittedEmail,
+  sendApplicationApprovedEmail,
+  sendApplicationRejectedEmail,
+} from "../utils/sendLawyerEmails.js";
 
 
 // API for adding lawyer
@@ -225,144 +230,7 @@ const approveLawyer = async (req, res) => {
 
     await lawyer.save();
 
-    //Email sending
-  //   await transporter.sendMail({
-  //     from: process.env.BREVO_USER,
-  //     to: application.email,
-
-  //     subject: "Welcome to AdvocateAssam - Lawyer Account Approved ⚖️",
-
-  //     html: `
-  // <div style="font-family: Arial, sans-serif; background:#f5f7fb; padding:40px;">
-
-  //   <div style="max-width:650px; margin:auto; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
-
-  //     <!-- Header -->
-  //     <div style="background:#0b2149; padding:30px; text-align:center;">
-  //       <h1 style="color:white; margin:0; font-size:32px;">
-  //         AdvocateAssam ⚖️
-  //       </h1>
-
-  //       <p style="color:#d4af37; margin-top:10px; font-size:15px;">
-  //         Connecting Clients with Trusted Legal Professionals
-  //       </p>
-  //     </div>
-
-  //     <!-- Content -->
-  //     <div style="padding:35px;">
-
-  //       <h2 style="color:#0b2149; margin-bottom:20px;">
-  //         Congratulations, ${application.name}! 🎉
-  //       </h2>
-
-  //       <p style="font-size:16px; color:#444; line-height:1.7;">
-  //         We are delighted to inform you that your lawyer verification request
-  //         has been successfully approved by the AdvocateAssam Verification Team.
-  //       </p>
-
-  //       <p style="font-size:16px; color:#444; line-height:1.7;">
-  //         Your professional profile is now active and visible on the
-  //         AdvocateAssam platform. You can start receiving legal consultation
-  //         requests from clients across Assam.
-  //       </p>
-
-  //       <!-- Verification Card -->
-  //       <div style="
-  //         background:#f8f9fd;
-  //         border-left:5px solid #d4af37;
-  //         padding:18px;
-  //         margin:25px 0;
-  //         border-radius:8px;
-  //       ">
-
-  //         <p style="margin:6px 0;">
-  //           <strong>Name:</strong> ${application.name}
-  //         </p>
-
-  //         <p style="margin:6px 0;">
-  //           <strong>Email:</strong> ${application.email}
-  //         </p>
-
-  //         <p style="margin:6px 0;">
-  //           <strong>Status:</strong>
-  //           <span style="color:green; font-weight:bold;">
-  //             ✓ Verified Lawyer
-  //           </span>
-  //         </p>
-
-  //       </div>
-
-  //       <h3 style="color:#0b2149;">
-  //         You can now:
-  //       </h3>
-
-  //       <ul style="color:#444; line-height:1.9;">
-  //         <li>Accept legal consultation requests</li>
-  //         <li>Manage appointments with clients</li>
-  //         <li>Update your professional profile</li>
-  //         <li>Showcase your legal expertise</li>
-  //         <li>Grow your legal practice online</li>
-  //       </ul>
-
-  //       <!-- Button -->
-  //       <div style="text-align:center; margin-top:35px;">
-
-  //         <a
-  //           href="http://localhost:5175"
-  //           style="
-  //             display:inline-block;
-  //             background:#0b2149;
-  //             color:white;
-  //             padding:14px 30px;
-  //             text-decoration:none;
-  //             border-radius:8px;
-  //             font-weight:bold;
-  //             font-size:16px;
-  //           "
-  //         >
-  //           Login to AdvocateAssam
-  //         </a>
-
-  //       </div>
-
-  //       <p style="
-  //         margin-top:35px;
-  //         color:#555;
-  //         line-height:1.7;
-  //       ">
-  //         Thank you for joining AdvocateAssam. We look forward to helping
-  //         you connect with clients and expand your professional reach.
-  //       </p>
-
-  //       <p style="margin-top:25px;">
-  //         Regards,<br>
-  //         <strong>AdvocateAssam Team</strong>
-  //       </p>
-
-  //     </div>
-
-  //     <!-- Footer -->
-  //     <div style="
-  //       background:#f8f9fd;
-  //       padding:20px;
-  //       text-align:center;
-  //       color:#777;
-  //       font-size:13px;
-  //     ">
-  //       <p>
-  //         This is an automated email. Please do not reply directly to this message.
-  //       </p>
-
-  //       <p>
-  //         © ${new Date().getFullYear()} AdvocateAssam. All Rights Reserved.
-  //       </p>
-  //     </div>
-
-  //   </div>
-
-  // </div>
-  // `,
-  //   });
+    await sendApplicationApprovedEmail(lawyerData);
 
     await lawyerApplicationModel.findByIdAndDelete(applicationId);
 
@@ -392,29 +260,7 @@ const rejectLawyer = async (req, res) => {
       });
     }
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-
-      to: application.email,
-
-      subject: "AdvocateAssam Verification Update",
-
-      html: `
-    <h2>Verification Update</h2>
-
-    <p>
-      Dear ${application.name},
-    </p>
-
-    <p>
-      Your lawyer verification request was not approved.
-    </p>
-
-    <p>
-      You may submit a new application with corrected documents.
-    </p>
-  `,
-    });
+    await sendApplicationRejectedEmail(lawyerData);
 
     await lawyerApplicationModel.findByIdAndDelete(applicationId);
 

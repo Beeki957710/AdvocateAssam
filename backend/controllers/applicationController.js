@@ -3,7 +3,11 @@ import { v2 as cloudinary } from "cloudinary";
 import bcrypt from "bcrypt";
 import validator from "validator";
 import upload from "../middleware/multer.js";
-// import transporter from "../config/nodemailer.js";
+import {
+  sendApplicationSubmittedEmail,
+  sendApplicationApprovedEmail,
+  sendApplicationRejectedEmail,
+} from "../utils/sendLawyerEmails.js";
 
 
 const applyLawyer = async (req, res) => {
@@ -118,41 +122,16 @@ const applyLawyer = async (req, res) => {
       date: Date.now(),
     };
 
-    const application =
-      new lawyerApplicationModel(applicationData);
+    const application = new lawyerApplicationModel(applicationData);
 
     await application.save();
-
-    //Email sending
-
-//     await transporter.sendMail({
-//   from: process.env.BREVO_USER,
-
-//   to: email,
-
-//   subject: "AdvocateAssam Application Received",
-
-//   html: `
-//     <h2>Application Submitted</h2>
-
-//     <p>
-//       Dear ${name},
-//     </p>
-
-//     <p>
-//       We have received your lawyer verification request.
-//     </p>
-
-//     <p>
-//       Our team will review your documents shortly.
-//     </p>
-//   `,
-// });
 
     res.json({
       success: true,
       message: "Application Submitted Successfully",
     });
+
+    await sendApplicationSubmittedEmail(lawyerData);
 
   } catch (error) {
 

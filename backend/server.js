@@ -35,35 +35,6 @@ app.use('/api/user', userRouter)
 app.use("/api/application",applicationRouter);
 //localhost:5000/api/admin/add-doctor
 
-//testing email sending
-
-
-// app.get("/test-mail", async (req, res) => {
-//   try {
-//     await apiInstance.sendTransacEmail({
-//       sender: {
-//         name: "AdvocateAssam",
-//         email: "support@advocateassam.com",
-//       },
-//       to: [
-//         {
-//           email: "YOUR_EMAIL@gmail.com",
-//         },
-//       ],
-//       subject: "Brevo API Test",
-//       htmlContent: "<h1>Mail Working</h1>",
-//     });
-
-//     res.json({ success: true });
-//   } catch (err) {
-//     console.log(err);
-//     res.json({
-//       success: false,
-//       error: err.message,
-//     });
-//   }
-// });
-
 
 app.get('/', (req, res)=>{
     res.send('API WORKING')
