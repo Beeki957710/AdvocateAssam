@@ -172,7 +172,7 @@ const Doctors = () => {
                 : "hover:border-primary"
             }`}
           >
-            Environment Lawyer
+            Environmental Lawyer
           </p>
              <p
             onClick={() =>
