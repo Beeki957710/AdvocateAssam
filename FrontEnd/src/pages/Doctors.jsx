@@ -153,7 +153,7 @@ const Doctors = () => {
                 : navigate("/doctors/Tax Law")
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Consumer Law"
+              speciality === "Tax Law"
                 ? "bg-primary text-white border-primary"
                 : "hover:border-primary"
             }`}
@@ -167,7 +167,7 @@ const Doctors = () => {
                 : navigate("/doctors/Environment Law")
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Consumer Law"
+              speciality === "Environment Law"
                 ? "bg-primary text-white border-primary"
                 : "hover:border-primary"
             }`}
@@ -181,7 +181,7 @@ const Doctors = () => {
                 : navigate("/doctors/Constitution Law")
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Constittution Law"
+              speciality === "Constitution Law"
                 ? "bg-primary text-white border-primary"
                 : "hover:border-primary"
             }`}
