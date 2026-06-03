@@ -162,12 +162,12 @@ const Doctors = () => {
           </p>
              <p
             onClick={() =>
-              speciality === "Environment Law"
+              speciality === "Environmental Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Environment Law")
+                : navigate("/doctors/Environmental Law")
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Environment Law"
+              speciality === "Environmental Law"
                 ? "bg-primary text-white border-primary"
                 : "hover:border-primary"
             }`}
@@ -176,17 +176,17 @@ const Doctors = () => {
           </p>
              <p
             onClick={() =>
-              speciality === "Constitution Law"
+              speciality === "Constitutional Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Constitution Law")
+                : navigate("/doctors/Constitutional Law")
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Constitution Law"
+              speciality === "Constitutional Law"
                 ? "bg-primary text-white border-primary"
                 : "hover:border-primary"
             }`}
           >
-            Constitution Lawyer
+            Constitutional Lawyer
           </p>
         </div>
 
