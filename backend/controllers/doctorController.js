@@ -25,7 +25,7 @@ const forgotPassword = async (req, res) => {
 
     await lawyer.save();
 
-    const resetLink = `https://advocateassam.com/reset-password/${resetToken}`;
+    const resetLink = `https://api.advocateassam.com/reset-password/${resetToken}`;
 
     await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
@@ -92,7 +92,7 @@ const resetPassword = async (req, res) => {
     const { password } = req.body;
 
     const lawyer = await doctorModel.findOne({
-      resetPasswordToken: req.params.token,
+      resetPasswordToken: req.params.dToken,
       resetPasswordExpire: { $gt: Date.now() },
     });
 
