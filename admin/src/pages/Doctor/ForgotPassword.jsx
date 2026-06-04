@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { DoctorContext } from "../context/DoctorContextProvider";
+
+import { DoctorContext } from "../../context/DoctorContext";
 
 const ForgotPassword = () => {
 
