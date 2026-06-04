@@ -30,18 +30,15 @@ const App = () => {
       <Routes>
         {/* PUBLIC ROUTE */}
         <Route path="/verify-lawyer" element={<VerifyAsLawyer />} />
-        <Route path="/forgot-password" element={<ForgotPassword />}/>
+
         
 
         {/* EXISTING APP */}
-        <Route path="*"
-          element={
-            aToken || dToken ? (
-              <div className="bg-[#F8F9FD]">
-                <Navbar />
-                <div className="flex items-start">
-                  <Sidebar />
-
+        <Route path="*" element={aToken || dToken ? 
+          ( <div className="bg-[#F8F9FD]"> 
+            <Navbar /> 
+              <div className="flex items-start"> 
+                <Sidebar />
                   <Routes>
                     {/* Admin Route */}
                     <Route path="/" element={<></>} />
@@ -55,12 +52,16 @@ const App = () => {
                     <Route path="/doctor-dashboard" element={<DoctorDashboard />}/>
                     <Route path="/doctor-appointments" element={<DoctorAppointments />}/>
                     <Route path="/doctor-profile" element={<DoctorProfile />} />
-                    <Route path="/reset-password/:dToken" element={<ResetPassword />}/>
+                    
                   </Routes>
                 </div>
               </div>
             ) : (
-              <Login />
+              <Routes>
+                <Login />
+                <Route path="/forgot-password" element={<ForgotPassword />}/>
+                <Route path="/reset-password/:dToken" element={<ResetPassword />}/>
+              </Routes>
             )
           }
         />
