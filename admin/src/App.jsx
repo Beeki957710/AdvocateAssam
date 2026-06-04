@@ -31,7 +31,7 @@ const App = () => {
         {/* PUBLIC ROUTE */}
         <Route path="/verify-lawyer" element={<VerifyAsLawyer />} />
         <Route path="/forgot-password" element={<ForgotPassword />}/>
-        <Route path="/reset-password/:dToken" element={<ResetPassword />}/>
+        
 
         {/* EXISTING APP */}
         <Route path="*"
@@ -55,6 +55,7 @@ const App = () => {
                     <Route path="/doctor-dashboard" element={<DoctorDashboard />}/>
                     <Route path="/doctor-appointments" element={<DoctorAppointments />}/>
                     <Route path="/doctor-profile" element={<DoctorProfile />} />
+                    <Route path="/reset-password/:dToken" element={<ResetPassword />}/>
                   </Routes>
                 </div>
               </div>
