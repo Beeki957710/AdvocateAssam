@@ -2,6 +2,9 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { DoctorContext } from "../context/DoctorContext";
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
 
 const ForgotPassword = () => {
   const { backendUrl } = useContext(DoctorContext);

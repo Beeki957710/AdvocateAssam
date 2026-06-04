@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
 import { DoctorContext } from "../context/DoctorContext";
 
+
 const ResetPassword = () => {
   const { token } = useParams();
 
