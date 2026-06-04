@@ -2,18 +2,12 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { DoctorContext } from "../context/DoctorContext";
-import { useNavigate } from "react-router-dom";
-
-
 
 const ForgotPassword = () => {
 
-  const navigate = useNavigate();
   const { backendUrl } = useContext(DoctorContext);
   const [email, setEmail] = useState("");
-
   
-
   const submitHandler = async (e) => {
     e.preventDefault();
 
