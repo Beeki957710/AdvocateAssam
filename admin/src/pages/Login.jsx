@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { DoctorContext } from "../context/DoctorContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [state, setState] = useState("Admin");
@@ -103,9 +104,18 @@ const Login = () => {
             className="w-full mt-2 px-4 py-3 border border-gray-300 rounded-2xl outline-none focus:border-[#071C55] transition-all"
           />
         </div>
-        
-        <p onClick={() => navigate("/forgot-password")} className="text-primary cursor-pointer text-sm">Forgot Password?</p>
 
+        <div className="w-full flex justify-between items-center mt-1">
+          <span className="text-xs text-gray-500">Secure account access</span>
+
+          <button
+            type="button"
+            onClick={() => navigate("/forgot-password")}
+            className="text-[#0b2149] font-medium text-sm hover:text-[#d4af37] transition-all duration-300"
+          >
+            Forgot Password?
+          </button>
+        </div>
 
         {/* Login Button */}
 
