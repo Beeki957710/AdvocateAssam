@@ -2,8 +2,130 @@ import doctorModel from "../models/doctorModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import appointmentModel from "../models/appointmentModel.js";
+import crypto from "crypto";
+
+//Api for forgot password
+const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const lawyer = await doctorModel.findOne({ email });
+
+    if (!lawyer) {
+      return res.json({
+        success: false,
+        message: "No account found with this email",
+      });
+    }
+
+    const resetToken = crypto.randomBytes(32).toString("hex");
+
+    lawyer.resetPasswordToken = resetToken;
+    lawyer.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
+
+    await lawyer.save();
+
+    const resetLink = `https://advocateassam.com/reset-password/${resetToken}`;
+
+    await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        "api-key": process.env.BREVO_API_KEY,
+      },
+
+      body: JSON.stringify({
+        sender: {
+          name: "AdvocateAssam",
+          email: "support@advocateassam.com",
+        },
+
+        to: [
+          {
+            email: lawyer.email,
+            name: lawyer.name,
+          },
+        ],
+
+        subject: "Reset Your Password",
+
+        htmlContent: `
+          <h2>Password Reset Request</h2>
+
+          <p>Click the button below to reset your password.</p>
+
+          <a href="${resetLink}"
+             style="
+               background:#0b2149;
+               color:white;
+               padding:12px 20px;
+               text-decoration:none;
+               border-radius:6px;
+             ">
+             Reset Password
+          </a>
+
+          <p>This link expires in 15 minutes.</p>
+        `,
+      }),
+    });
+
+    res.json({
+      success: true,
+      message: "Password reset email sent",
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 
+//API to reset password
+const resetPassword = async (req, res) => {
+  try {
+    const { password } = req.body;
+
+    const lawyer = await doctorModel.findOne({
+      resetPasswordToken: req.params.token,
+      resetPasswordExpire: { $gt: Date.now() },
+    });
+
+    if (!lawyer) {
+      return res.json({
+        success: false,
+        message: "Invalid or expired token",
+      });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+
+    lawyer.password = await bcrypt.hash(password, salt);
+
+    lawyer.resetPasswordToken = "";
+    lawyer.resetPasswordExpire = null;
+
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Password reset successful",
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 // API for VerifyAslawyer
 const VerifyAsLawyer = async (req, res) => {

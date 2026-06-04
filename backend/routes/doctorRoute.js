@@ -8,6 +8,10 @@ const doctorRouter = express.Router()
 doctorRouter.post('/verify-lawyer',authDoctor,upload.fields([{ name: 'image', maxCount: 1 },{ name: 'barCertificate', maxCount: 1 },{ name: 'degreeCertificate', maxCount: 1 }]), VerifyAsLawyer)
 doctorRouter.get('/list', doctorList)
 doctorRouter.post('/login', loginDoctor)
+
+doctorRouter.post("/forgot-password", forgotPassword)
+doctorRouter.post("/reset-password/:token", resetPassword)
+
 doctorRouter.get('/appointments', authDoctor, appointmentsDoctor)
 doctorRouter.post('/complete-appointment', authDoctor, appointmentComplete)
 doctorRouter.post('/cancel-appointment', authDoctor, appointmentCancel)

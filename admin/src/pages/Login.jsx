@@ -103,6 +103,9 @@ const Login = () => {
             className="w-full mt-2 px-4 py-3 border border-gray-300 rounded-2xl outline-none focus:border-[#071C55] transition-all"
           />
         </div>
+        
+        <p onClick={() => navigate("/forgot-password")} className="text-primary cursor-pointer text-sm">Forgot Password?</p>
+
 
         {/* Login Button */}
 

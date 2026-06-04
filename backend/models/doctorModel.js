@@ -74,6 +74,9 @@ const doctorSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+
+    resetPasswordToken: {type: String, default: "",},
+    resetPasswordExpire: {type: Date,},
   },
   { minimize: false },
 );
