@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
-import { DoctorContext } from "../context/DoctorContext";
+import { DoctorContext } from "../context/DoctorContextProvider";
 
 
 const ResetPassword = () => {

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { DoctorContext } from "../context/DoctorContext";
+import { DoctorContext } from "../context/DoctorContextProvider";
 
 const ForgotPassword = () => {
 
   const { backendUrl } = useContext(DoctorContext);
   const [email, setEmail] = useState("");
-  
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
