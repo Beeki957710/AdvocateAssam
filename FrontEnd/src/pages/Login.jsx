@@ -28,9 +28,8 @@ const Login = () => {
 
         
         if(data.success) {
-          toast.success("Account created successfully!")
-          localStorage.setItem('token', data.token)
-          setToken(data.token)
+            toast.success(data.message);
+            setState("Login");
           } else {
           toast.error(data.message)
         }

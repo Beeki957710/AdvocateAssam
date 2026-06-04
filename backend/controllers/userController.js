@@ -120,9 +120,9 @@ const registerUser = async (req, res) => {
       }),
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-    res.json({ success: true, token });
+    res.json({success: true, message: "Verification email sent. Please verify your email before logging in.",});
 
     
   } catch (error) {
