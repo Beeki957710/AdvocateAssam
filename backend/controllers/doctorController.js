@@ -460,5 +460,7 @@ export {
   doctorDashboard,
   doctorProfile,
   updateDoctorProfile,
-  VerifyAsLawyer
+  VerifyAsLawyer,
+  forgotPassword,
+  resetPassword
 };
