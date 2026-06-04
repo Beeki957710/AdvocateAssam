@@ -9,8 +9,8 @@ userRouter.post('/register', registerUser)
 userRouter.post('/login', loginUser)
 ////////
 userRouter.get("/verify-email/:token", verifyEmail)
-router.post("/forgot-password", forgotPassword);
-router.post("/reset-password/:token",resetPassword);
+userRouter.post("/forgot-password", forgotPassword);
+userRouter.post("/reset-password/:token",resetPassword);
 
 userRouter.get('/get-profile',authUser, getProfile)
 userRouter.post('/update-profile', upload.single('image'),authUser, updateProfile)
