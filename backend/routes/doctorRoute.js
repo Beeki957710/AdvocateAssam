@@ -10,7 +10,7 @@ doctorRouter.get('/list', doctorList)
 doctorRouter.post('/login', loginDoctor)
 
 doctorRouter.post("/forgot-password", forgotPassword)
-doctorRouter.post("/reset-password/:token", resetPassword)
+doctorRouter.post("/reset-password/:dToken", resetPassword)
 
 doctorRouter.get('/appointments', authDoctor, appointmentsDoctor)
 doctorRouter.post('/complete-appointment', authDoctor, appointmentComplete)
