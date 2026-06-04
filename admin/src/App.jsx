@@ -31,7 +31,7 @@ const App = () => {
         {/* PUBLIC ROUTE */}
         <Route path="/verify-lawyer" element={<VerifyAsLawyer />} />
         <Route path="/forgot-password" element={<ForgotPassword />}/>
-        <Route path="/reset-password/:token" element={<ResetPassword />}/>
+        <Route path="/reset-password/:dToken" element={<ResetPassword />}/>
 
         {/* EXISTING APP */}
         <Route path="*"
