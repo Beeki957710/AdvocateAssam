@@ -19,6 +19,8 @@ const verifyEmail = async (req, res) => {
       verificationToken: req.params.token,
     });
 
+  
+
     if (!user) {
       return res.json({
         success: false,
@@ -32,7 +34,7 @@ const verifyEmail = async (req, res) => {
 
     await user.save();
 
-    await sendWelcomeEmail(userData);
+    await sendWelcomeEmail(user);
 
     res.json({
       success: true,
