@@ -7,11 +7,9 @@ import doctorModel from "../models/doctorModel.js";
 import appointmentModel from "../models/appointmentModel.js";
 import razorpay from "razorpay";
 import { sendWelcomeEmail } from "../utils/sendUserEmails.js";
-
-//////////////
 import crypto from "crypto";
 
-//////////////
+
 //Api to verify Email
 const verifyEmail = async (req, res) => {
   try {
@@ -48,6 +46,130 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+
+//Api for forgot password
+const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "No account found with this email",
+      });
+    }
+
+    const resetToken = crypto.randomBytes(32).toString("hex");
+
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
+
+    await user.save();
+
+    const resetLink = `https://advocateassam.com/reset-password/${resetToken}`;
+
+    await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        "api-key": process.env.BREVO_API_KEY,
+      },
+
+      body: JSON.stringify({
+        sender: {
+          name: "AdvocateAssam",
+          email: "support@advocateassam.com",
+        },
+
+        to: [
+          {
+            email: user.email,
+            name: user.name,
+          },
+        ],
+
+        subject: "Reset Your Password",
+
+        htmlContent: `
+          <h2>Password Reset Request</h2>
+
+          <p>Click the button below to reset your password.</p>
+
+          <a href="${resetLink}"
+             style="
+               background:#0b2149;
+               color:white;
+               padding:12px 20px;
+               text-decoration:none;
+               border-radius:6px;
+             ">
+             Reset Password
+          </a>
+
+          <p>This link expires in 15 minutes.</p>
+        `,
+      }),
+    });
+
+    res.json({
+      success: true,
+      message: "Password reset email sent",
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+//API to reset password
+const resetPassword = async (req, res) => {
+  try {
+    const { password } = req.body;
+
+    const user = await userModel.findOne({
+      resetPasswordToken: req.params.token,
+      resetPasswordExpire: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "Invalid or expired token",
+      });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+
+    user.password = await bcrypt.hash(password, salt);
+
+    user.resetPasswordToken = "";
+    user.resetPasswordExpire = null;
+
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Password reset successful",
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 // API to register User
 const registerUser = async (req, res) => {
   try {
@@ -71,7 +193,7 @@ const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    ////////////////
+    
     const verificationToken = crypto.randomBytes(32).toString("hex");
 
     const userData = {
@@ -79,7 +201,7 @@ const registerUser = async (req, res) => {
       email,
       password: hashedPassword,
 
-      //////////////////
+      
       isVerified: false,
       verificationToken,
     };
@@ -87,9 +209,9 @@ const registerUser = async (req, res) => {
     const newUser = new userModel(userData);
     const user = await newUser.save();
 
-    //////////////////////
+   
     const verifyLink = `https://advocateassam.com/verify-email/${verificationToken}`;
-    //////////////////////
+    
     await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
@@ -120,7 +242,7 @@ const registerUser = async (req, res) => {
       }),
     });
 
-    // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    
 
     res.json({success: true, message: "Verification email sent. Please verify your email before logging in.",});
 
@@ -141,7 +263,7 @@ const loginUser = async (req, res) => {
       return res.json({ success: false, message: "User does not exist" });
     }
 
-    //////////////////
+   
     if (!user.isVerified) {
       return res.json({success: false, message: "Verify your email first"});
     }
@@ -388,4 +510,6 @@ export {
   paymentRazorpay,
   verifyRazorpay,
   verifyEmail,
+  forgotPassword,
+  resetPassword
 };

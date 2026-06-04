@@ -81,6 +81,8 @@ const Login = () => {
         <input className='border border-zinc-300 rounded w-full p-2 mt-1' type="password" onChange={(e)=>setPassword(e.target.value)} value={password}/>
       </div>
 
+      <p onClick={() => navigate("/forgot-password")} className="text-primary cursor-pointer text-sm">Forgot Password?</p>
+
       <button type='submit' className='bg-primary text-white w-full py-2 rounded-md text-base'>{state === 'Sign Up' ? "Create account" : "Login"}</button>
       {
         state === "Sign Up"
