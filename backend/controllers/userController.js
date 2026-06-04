@@ -8,6 +8,43 @@ import appointmentModel from "../models/appointmentModel.js";
 import razorpay from "razorpay";
 import { sendWelcomeEmail } from "../utils/sendUserEmails.js";
 
+//////////////
+import crypto from "crypto";
+
+//////////////
+//Api to verify Email
+const verifyEmail = async (req, res) => {
+  try {
+    const user = await userModel.findOne({
+      verificationToken: req.params.token,
+    });
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "Invalid Token",
+      });
+    }
+
+    user.isVerified = true;
+
+    user.verificationToken = "";
+
+    await user.save();
+
+    await sendWelcomeEmail(userData);
+
+    res.json({
+      success: true,
+      message: "Email Verified",
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 // API to register User
 const registerUser = async (req, res) => {
@@ -32,23 +69,60 @@ const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    ////////////////
+    const verificationToken = crypto.randomBytes(32).toString("hex");
+
     const userData = {
       name,
       email,
       password: hashedPassword,
+
+      //////////////////
+      isVerified: false,
+      verificationToken,
     };
-  
 
     const newUser = new userModel(userData);
     const user = await newUser.save();
-    
+
+    //////////////////////
+    const verifyLink = `https://advocateassam.com/verify-email/${verificationToken}`;
+    //////////////////////
+    await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        "api-key": process.env.BREVO_API_KEY,
+      },
+
+      body: JSON.stringify({
+        sender: {
+          name: "AdvocateAssam",
+          email: "support@advocateassam.com",
+        },
+
+        to: [
+          {
+            email: user.email,
+            name: user.name,
+          },
+        ],
+
+        subject: "Verify Your Email",
+
+        htmlContent: `
+         <h2>Verify your email</h2>
+         <p>Click below:</p>
+         <a href="${verifyLink}"> Verify Email </a>`,
+      }),
+    });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-   
 
     res.json({ success: true, token });
 
-    await sendWelcomeEmail(userData);
+    
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
@@ -60,8 +134,14 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const user = await userModel.findOne({ email });
 
+
     if (!user) {
       return res.json({ success: false, message: "User does not exist" });
+    }
+
+    //////////////////
+    if (!user.isVerified) {
+      return res.json({success: false, message: "Verify your email first"});
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -305,4 +385,5 @@ export {
   cancelAppointment,
   paymentRazorpay,
   verifyRazorpay,
+  verifyEmail,
 };
