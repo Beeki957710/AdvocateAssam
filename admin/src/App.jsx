@@ -26,47 +26,50 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-
       <Routes>
-        {/* PUBLIC ROUTE */}
+        {/* Public Pages */}
+        <Route path="/" element={<Login />} />
         <Route path="/verify-lawyer" element={<VerifyAsLawyer />} />
-        <Route path="/forgot-password" element={<ForgotPassword />}/>
-        <Route path="/reset-password/:token" element={<ResetPassword />}/>
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-        {/* EXISTING APP */}
-        <Route path="*"
-          element={
-            aToken || dToken ? (
+        {aToken || dToken ? (
+          <Route
+            path="/*"
+            element={
               <div className="bg-[#F8F9FD]">
                 <Navbar />
                 <div className="flex items-start">
                   <Sidebar />
 
                   <Routes>
-                    {/* Admin Route */}
-                    <Route path="/" element={<></>} />
-                    <Route path="/admin-dashboard" element={<Dashboard />} />
-                    <Route path="/all-appointment" element={<AllAppointment />}/>
-                    <Route path="/add-doctor" element={<AddDoctor />} />
-                    <Route path="/doctor-list" element={<DoctorList />} />
-                    <Route path="/lawyer-applications" element={<LawyerApplications />}/>
+                    <Route path="admin-dashboard" element={<Dashboard />} />
+                    <Route
+                      path="all-appointment"
+                      element={<AllAppointment />}
+                    />
+                    <Route path="add-doctor" element={<AddDoctor />} />
+                    <Route path="doctor-list" element={<DoctorList />} />
+                    <Route
+                      path="lawyer-applications"
+                      element={<LawyerApplications />}
+                    />
 
-                    {/* Lawyer Route */}
-                    <Route path="/doctor-dashboard" element={<DoctorDashboard />}/>
-                    <Route path="/doctor-appointments" element={<DoctorAppointments />}/>
-                    <Route path="/doctor-profile" element={<DoctorProfile />} />
+                    <Route
+                      path="doctor-dashboard"
+                      element={<DoctorDashboard />}
+                    />
+                    <Route
+                      path="doctor-appointments"
+                      element={<DoctorAppointments />}
+                    />
+                    <Route path="doctor-profile" element={<DoctorProfile />} />
                   </Routes>
                 </div>
               </div>
-            ) : (
-               <Routes>
-                 <Route path="/" element={<Login />} />
-                 <Route path="/forgot-password" element={<ForgotPassword />} />
-                 <Route path="/reset-password/:token" element={<ResetPassword />}/>
-               </Routes>
-            )
-          }
-        />
+            }
+          />
+        ) : null}
       </Routes>
     </>
   );
