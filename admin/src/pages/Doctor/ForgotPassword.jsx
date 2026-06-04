@@ -4,12 +4,15 @@ import { toast } from "react-toastify";
 import { DoctorContext } from "../context/DoctorContext";
 import { useNavigate } from "react-router-dom";
 
-const navigate = useNavigate();
+
 
 const ForgotPassword = () => {
-  const { backendUrl } = useContext(DoctorContext);
 
+  const navigate = useNavigate();
+  const { backendUrl } = useContext(DoctorContext);
   const [email, setEmail] = useState("");
+
+  
 
   const submitHandler = async (e) => {
     e.preventDefault();
