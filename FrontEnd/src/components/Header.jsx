@@ -1,5 +1,6 @@
 import React from "react";
 import { assets } from "../assets/assets_frontend/assets";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -38,11 +39,15 @@ const Header = () => {
             Find a Lawyer
             <span className="text-xl">→</span>
           </a>
-
-          <a className="border-2 border-[#D49A1F] text-[#D49A1F] hover:bg-[#D49A1F] hover:text-white transition-all duration-300 px-8 py-4 rounded-xl font-medium flex items-center gap-3 w-fit">
+          <NavLink to="/how-it-works" className="border-2 border-[#D49A1F] text-[#D49A1F] hover:bg-[#D49A1F] hover:text-white transition-all duration-300 px-8 py-4 rounded-xl font-medium flex items-center gap-3 w-fit">
             How It Works
             <span>▶</span>
-          </a>
+          </NavLink>
+
+          {/* <a className="border-2 border-[#D49A1F] text-[#D49A1F] hover:bg-[#D49A1F] hover:text-white transition-all duration-300 px-8 py-4 rounded-xl font-medium flex items-center gap-3 w-fit">
+            How It Works
+            <span>▶</span>
+          </a> */}
         </div>
 
         {/* STATS */}

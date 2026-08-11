@@ -13,6 +13,7 @@ import Footer from './components/Footer'
 import VerifyEmail from './pages/VerifyEmail'
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import HowItWorks from "./pages/HowItWorks";
 import './index.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -34,6 +35,7 @@ const App = () => {
         <Route path ='/my-profile' element={<MyProfile />}/>
         <Route path ='/my-appointments' element={<MyAppointment />}/>
         <Route path ='/appointment/:docId' element={<Appointment />}/>
+        <Route path="/how-it-works" element={<HowItWorks />} />
 
 //////////////
         <Route path="/verify-email/:token" element={<VerifyEmail/>}/>

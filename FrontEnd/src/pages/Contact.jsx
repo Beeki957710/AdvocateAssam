@@ -40,7 +40,7 @@ const Contact = () => {
           {/* Contact */}
           <div>
             <p className='leading-7 text-gray-500'>
-              📞 +91 XXXX XXXXX<br />
+              📞 +91 8011831481<br />
               ✉️ support.advocateassam@gmail.com
             </p>
           </div>
