@@ -6,7 +6,8 @@ import { DoctorContext } from "../../context/DoctorContext";
 
 
 const ResetPassword = () => {
-  const { token } = useParams();
+  const { dToken } = useParams();
+        
 
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ const ResetPassword = () => {
 
     try {
       const { data } = await axios.post(
-        backendUrl + "/api/doctor/reset-password/" + token,
+        backendUrl + "/api/doctor/reset-password/" + dToken,
         { password },
       );
 

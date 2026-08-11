@@ -100,7 +100,7 @@ const VerifyAsLawyer = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#F5F7FB] p-4 md:p-8">
+    <div className="w-full min-h-screen  p-4 md:p-8">
       {/* Heading */}
 
       {/* NyaySetu Header */}
@@ -108,7 +108,7 @@ const VerifyAsLawyer = () => {
       <div className="max-w-6xl mb-8">
         {/* Logo */}
         <div className="flex items-center gap-4 mb-6">
-          <img src={assets.logo} alt="NyaySetu" className="w-44 md:w-56" />
+          <img src={assets.logo} alt="NyaySetu" className="w-44 md:w-56 rounded-2xl" />
 
           <div className="hidden md:block h-10 w-[1px] bg-gray-300"></div>
 
