@@ -110,7 +110,7 @@ const resetPassword = async (req, res) => {
     lawyer.resetPasswordToken = "";
     lawyer.resetPasswordExpire = null;
 
-    await user.save();
+    await lawyer.save();
 
     res.json({
       success: true,
