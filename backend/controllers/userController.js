@@ -346,7 +346,7 @@ const bookAppointment = async (req, res) => {
 
     // ✅ fixed success flag
     if (!docData.available) {
-      return res.json({ success: false, message: "Doctor not available" });
+      return res.json({ success: false, message: "Lawyer not available" });
     }
 
     // ✅ prevent undefined error

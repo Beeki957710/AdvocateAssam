@@ -155,6 +155,7 @@ const VerifyAsLawyer = async (req, res) => {
     if (
       !name ||
       !email ||
+      !whatsapp ||
       !password ||
       !speciality ||
       !degree ||
@@ -188,6 +189,8 @@ const VerifyAsLawyer = async (req, res) => {
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
+    const parsedSpeciality = JSON.parse(speciality);
 
     // Upload profile image
     let imageUrl = "";

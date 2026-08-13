@@ -30,10 +30,12 @@ const applyLawyer = async (req, res) => {
     const imageFile = req.files?.image?.[0];
     const barCertificateFile = req.files?.barCertificate?.[0];
     const degreeCertificateFile = req.files?.degreeCertificate?.[0];
+    
 
     if (
       !name ||
       !email ||
+      !whatsapp ||
       !password ||
       !speciality ||
       !degree ||
@@ -57,6 +59,8 @@ const applyLawyer = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
+    const parsedSpeciality = JSON.parse(speciality);
 
     // Upload lawyer photo
     const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
@@ -93,7 +97,7 @@ const applyLawyer = async (req, res) => {
       password: hashedPassword,
       image: imageUpload.secure_url,
 
-      speciality,
+      speciality: parsedSpeciality,
       degree,
       experience,
       about,

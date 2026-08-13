@@ -12,7 +12,7 @@ const doctorSchema = new mongoose.Schema(
 
     image: { type: String, required: true },
 
-    speciality: { type: String, required: true },
+    speciality: {type: [String], required: true },
 
     degree: { type: String, required: true },
 

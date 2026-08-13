@@ -191,45 +191,49 @@ const approveLawyer = async (req, res) => {
       name: application.name,
       email: application.email,
       whatsapp: application.whatsapp,
+
+      // Password should already be hashed when application was created
       password: application.password,
 
       image: application.image,
 
-      speciality: application.speciality,
+      // Multiple specialities
+      speciality: Array.isArray(application.speciality) ? application.speciality : [application.speciality],
+
       degree: application.degree,
       experience: application.experience,
-
       about: application.about,
 
       fees: application.fees,
-
       address: application.address,
 
       date: Date.now(),
 
+      // Appointment data
       slots_booked: {},
 
+      // Lawyer verification
       isVerified: true,
       verificationStatus: "Approved",
 
+      // Legal verification details
       barCouncilNumber: application.barCouncilNumber,
-
       stateBarCouncil: application.stateBarCouncil,
-
       advocateId: application.advocateId,
 
+      // Documents
       barCertificate: application.barCertificate,
-
       degreeCertificate: application.degreeCertificate,
 
       verifiedAt: new Date(),
     };
 
+    // Create lawyer account
     const lawyer = new doctorModel(lawyerData);
 
     await lawyer.save();
 
-    // Delete application
+    // Delete application after successful approval
     await lawyerApplicationModel.findByIdAndDelete(applicationId);
 
     // Send approval email
@@ -241,10 +245,13 @@ const approveLawyer = async (req, res) => {
 
     return res.json({
       success: true,
-      message: "Lawyer Approved",
+      message: "Lawyer Approved Successfully",
     });
+
   } catch (error) {
-    res.json({
+    console.log("Approve Lawyer Error:", error);
+
+    return res.json({
       success: false,
       message: error.message,
     });
