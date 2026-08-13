@@ -1,7 +1,22 @@
 import React from 'react'
 import { assets } from '../assets/assets_frontend/assets'
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
+    
+    const navigate = useNavigate();
+    
+    const handleNavigation = (path) => {
+    navigate(path);
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
   return (
     <div className='px-6 md:px-12 lg:px-20'>
 
@@ -59,7 +74,7 @@ const Contact = () => {
           </div>
 
           {/* Button */}
-          <button className='border border-primary text-primary px-8 py-4 rounded-lg text-sm font-medium hover:bg-primary hover:text-white transition-all duration-500'>
+          <button onClick={() => handleNavigation("/doctors")} className='border border-primary text-primary px-8 py-4 rounded-lg text-sm font-medium hover:bg-primary hover:text-white transition-all duration-500'>
             Book Consultation
           </button>
 

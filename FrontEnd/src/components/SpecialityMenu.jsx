@@ -23,7 +23,7 @@ const SpecialityMenu = () => {
   return (
     <section
       id="speciality"
-      className="relative py-14 bg-[#FAFBFF] overflow-hidden"
+      className="relative py-14  overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
@@ -47,18 +47,7 @@ const SpecialityMenu = () => {
 
 
         {/* Scrollable Categories */}
-        <div
-          className="
-            flex
-            gap-3
-            overflow-x-auto
-            pb-4
-            px-1
-            no-scrollbar
-            snap-x
-            snap-mandatory
-          "
-        >
+        <div className="flex gap-3 overflow-x-auto pb-4 px-1 no-scrollbar snap-x snap-mandatory">
 
           {categories.map((category, index) => {
 
@@ -71,52 +60,12 @@ const SpecialityMenu = () => {
                 key={index}
                 to={`/doctors/${encodeURIComponent(category)}`}
                 onClick={() => window.scrollTo(0, 0)}
-                className="
-                  group
-                  flex-shrink-0
-                  snap-start
-                "
-              >
+                className="group flex-shrink-0 snap-start">
 
-                <div
-                  className="
-                    w-[135px]
-                    sm:w-[150px]
-                    h-[145px]
-                    bg-white
-                    border
-                    border-gray-100
-                    rounded-2xl
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    shadow-sm
-                    hover:shadow-lg
-                    hover:-translate-y-1
-                    hover:border-[#D4A017]/40
-                    transition-all
-                    duration-300
-                  "
-                >
+               <div className="w-[135px] sm:w-[150px] h-[145px] bg-white border border-gray-100 rounded-2xl flex flex-col items-center justify-center shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#D4A017]/40 transition-all duration-300">
 
                   {/* Icon */}
-                  <div
-                    className="
-                      w-16
-                      h-16
-                      rounded-xl
-                      bg-[#F7EEDC]
-                      border
-                      border-[#E8D8B8]
-                      flex
-                      items-center
-                      justify-center
-                      group-hover:scale-105
-                      transition-transform
-                      duration-300
-                    "
-                  >
+                  <div className="w-16 h-16 rounded-xl bg-[#F7EEDC] border border-[#E8D8B8] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                     {categoryData ? (
                       <img
                         src={categoryData.image}
@@ -131,18 +80,7 @@ const SpecialityMenu = () => {
                   </div>
 
                   {/* Name */}
-                  <p
-                    className="
-                      text-xs
-                      font-semibold
-                      text-[#0b2149]
-                      text-center
-                      mt-3
-                      px-2
-                      group-hover:text-[#D4A017]
-                      transition-colors
-                    "
-                  >
+                  <p className="text-xs font-semibold text-[#0b2149] text-center mt-3 px-2 group-hover:text-[#D4A017] transition-colors">
                     {category}
                   </p>
 

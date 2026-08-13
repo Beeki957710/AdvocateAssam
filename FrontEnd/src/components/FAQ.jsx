@@ -51,7 +51,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 bg-[#FAFBFF] overflow-hidden">
+    <section id="faqs"  className="relative py-20 px-4 sm:px-6 bg-[#FAFBFF] overflow-hidden">
 
       {/* Background Decorations */}
       <div className="absolute -top-32 -left-32 w-80 h-80 bg-[#D4A017]/5 rounded-full blur-3xl" />

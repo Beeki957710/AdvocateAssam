@@ -11,6 +11,50 @@ const Doctors = () => {
 
   const { doctors } = useContext(AppContext);
 
+  const specialities = [
+    { name: "Criminal Law", icon: "⚖️" },
+    { name: "Family Law", icon: "👨‍👩‍👧" },
+    { name: "Corporate Law", icon: "🏢" },
+    { name: "Civil Law", icon: "📜" },
+    { name: "Property Law", icon: "🏠" },
+    { name: "Cyber Law", icon: "💻" },
+    { name: "Consumer Law", icon: "🛒" },
+    { name: "Tax Law", icon: "💰" },
+    { name: "Environmental Law", icon: "🌱" },
+    { name: "Constitutional Law", icon: "⚜️" },
+    { name: "Divorce Law", icon: "💍" },
+    { name: "Labour Law", icon: "👷" },
+    { name: "Intellectual Property Law", icon: "💡" },
+  ];
+
+  const getSpecialities = (value) => {
+    if (!value) return [];
+
+    if (Array.isArray(value)) {
+      if (value.length === 1 && typeof value[0] === "string") {
+        try {
+          const parsed = JSON.parse(value[0]);
+          return Array.isArray(parsed) ? parsed : value;
+        } catch {
+          return value;
+        }
+      }
+
+      return value;
+    }
+
+    if (typeof value === "string") {
+      try {
+        const parsed = JSON.parse(value);
+        return Array.isArray(parsed) ? parsed : [value];
+      } catch {
+        return [value];
+      }
+    }
+
+    return [];
+  };
+
   const applyFilter = () => {
     if (!speciality) {
       setFilterDoc(doctors);
@@ -18,28 +62,7 @@ const Doctors = () => {
     }
 
     const filtered = doctors.filter((doc) => {
-      let specialities = [];
-
-      // Case 1: speciality is already an array
-      if (Array.isArray(doc.speciality)) {
-        specialities = doc.speciality;
-      }
-
-      // Case 2: speciality is a JSON string
-      else if (typeof doc.speciality === "string") {
-        try {
-          const parsed = JSON.parse(doc.speciality);
-
-          if (Array.isArray(parsed)) {
-            specialities = parsed;
-          } else {
-            specialities = [doc.speciality];
-          }
-        } catch {
-          // Case 3: normal single speciality string
-          specialities = [doc.speciality];
-        }
-      }
+      const specialities = getSpecialities(doc.speciality);
 
       return specialities.includes(speciality);
     });
@@ -54,210 +77,118 @@ const Doctors = () => {
   return (
     <div>
       {/* Heading */}
-      <p className="text-gray-600 text-medium">
-        Browse through our trusted legal experts and experienced attorneys.
-      </p>
+      <div className="flex flex-col items-center mt-2">
+        <div className="w-12 h-1 bg-[#D4A017] rounded-full mb-3"></div>
+        <p className="text-gray-500 text-sm sm:text-base max-w-2xl text-center leading-7">
+          Explore verified legal professionals across multiple practice areas
+          and get trusted guidance for your legal needs.
+        </p>
+      </div>
 
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
         {/* Filter Button */}
         <button
           onClick={() => setShowFilter((prev) => !prev)}
-          className={`py-2 px-4 border rounded-lg text-sm transition-all sm:hidden ${showFilter ? "bg-primary text-white" : ""}`}
+          className={`sm:hidden flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-300 ${showFilter ? "bg-[#0b2149] text-white border-[#0b2149] shadow-md" : "bg-white text-[#0b2149] border-gray-200 shadow-sm"}`}
         >
-          Filters
+          <span>☰</span>
+          Practice Areas
+          <span className="text-xs">{showFilter ? "▲" : "▼"}</span>
         </button>
 
         {/* Sidebar */}
         <div
-          className={`flex flex-col gap-4 text-sm text-gray-600 ${showFilter ? "flex" : "hidden sm:flex"}`}
+          className={`${showFilter ? "flex" : "hidden sm:flex"} w-full sm:w-[250px] flex-shrink-0 mb-2`}
         >
-          <p
-            onClick={() =>
-              speciality === "Criminal Law"
-                ? navigate("/doctors")
-                : navigate(`/doctors/${encodeURIComponent("Criminal Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Criminal Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Criminal Lawyer
-          </p>
+          <div className="w-full bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sticky top-24">
+            <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-100">
+              <div>
+                <h2 className="text-base font-bold text-[#0b2149]">
+                  Practice Areas
+                </h2>
+                <p className="text-xs text-gray-400 mt-1">
+                  Find the right legal expert
+                </p>
+              </div>
 
-          <p
-            onClick={() =>
-              speciality === "Family Law"
-                ? navigate("/doctors")
-                : navigate(`/doctors/${encodeURIComponent("Family Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Family Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Family Lawyer
-          </p>
+              <div className="w-9 h-9 rounded-xl bg-[#F1F5FF] flex items-center justify-center text-[#0b2149] text-lg">
+                ⚖
+              </div>
+            </div>
 
-          <p
-            onClick={() =>
-              speciality === "Corporate Law"
-                ? navigate("/doctors")
-                : navigate(`/doctors/${encodeURIComponent("Corporate Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Corporate Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Corporate Lawyer
-          </p>
+            <button
+              onClick={() => navigate("/doctors")}
+              className={`w-full flex items-center justify-between px-3 py-2.5 mb-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                !speciality
+                  ? "bg-[#0b2149] text-white shadow-md"
+                  : "text-gray-600 hover:bg-[#F1F5FF] hover:text-[#0b2149]"
+              }`}
+            >
+              <span className="flex items-center gap-3">
+                <span
+                  className={`w-7 h-7 rounded-lg flex items-center justify-center ${!speciality ? "bg-white/10" : "bg-[#F1F5FF]"}`}
+                >
+                  ✦
+                </span>
+                All Lawyers
+              </span>
 
-          <p
-            onClick={() =>
-              speciality === "Civil Law"
-                ? navigate("/doctors")
-                : navigate(`/doctors/${encodeURIComponent("Civil Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Civil Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Civil Lawyer
-          </p>
+              {!speciality && <span>✓</span>}
+            </button>
 
-          <p
-            onClick={() =>
-              speciality === "Property Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Property Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Property Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Property Lawyer
-          </p>
+            <div className="space-y-1 max-h-[520px] overflow-y-auto pr-1 custom-scrollbar">
+              {specialities.map((item) => {
+                const isActive = speciality === item.name;
 
-          <p
-            onClick={() =>
-              speciality === "Cyber Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Cyber Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Cyber Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Cyber Lawyer
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Consumer Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Consumer Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Consumer Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Consumer Lawyer
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Tax Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Tax Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Tax Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Tax Lawyer
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Environmental Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Environmental Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Environmental Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Environmental Lawyer
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Constitutional Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Constitutional Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Constitutional Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Constitutional Lawyer
-          </p>
-           <p
-            onClick={() =>
-              speciality === "Divorce Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Divorce Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Divorce Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Divorce Lawyer
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Labour Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Labour Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Labour Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Labour Lawyer
-          </p>
-            <p
-            onClick={() =>
-              speciality === "Intellectual Property Law"
-                ? navigate("/doctors")
-                :  navigate(`/doctors/${encodeURIComponent("Intellectual Property Law")}`)
-            }
-            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
-              speciality === "Intellectual Property Law"
-                ? "bg-primary text-white border-primary"
-                : "hover:border-primary"
-            }`}
-          >
-            Intellectual Property Lawyer
-          </p>
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() =>
+                      navigate(`/doctors/${encodeURIComponent(item.name)}`)
+                    }
+                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm transition-all duration-200 group ${
+                      isActive
+                        ? "bg-[#0b2149] text-white shadow-md"
+                        : "text-gray-600 hover:bg-[#F7F9FC] hover:text-[#0b2149]"
+                    }`}
+                  >
+                    <span className="flex items-center gap-3 min-w-0">
+                      <span
+                        className={`w-7 h-7 flex-shrink-0 rounded-lg flex items-center justify-center text-sm transition-all ${
+                          isActive
+                            ? "bg-white/10"
+                            : "bg-[#F5F7FA] group-hover:bg-[#E8EEF9]"
+                        }`}
+                      >
+                        {item.icon}
+                      </span>
+
+                      <span className="truncate text-left">{item.name}</span>
+                    </span>
+
+                    <span
+                      className={`text-xs transition-all ${
+                        isActive
+                          ? "text-[#D4A017]"
+                          : "text-gray-300 group-hover:text-[#0b2149]"
+                      }`}
+                    >
+                      →
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FFFBF0] border border-[#F3E5B8]">
+                <span className="text-[#D4A017]">✓</span>
+                <p className="text-[11px] text-gray-600">
+                  Verified legal professionals
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Cards */}
@@ -297,45 +228,27 @@ const Doctors = () => {
 
                 {/* Specialities */}
 
+                {/* Specialities */}
                 <div className="mt-3">
                   <p className="text-xs text-gray-400 mb-2">Specialities</p>
 
                   <div className="flex flex-wrap gap-2">
-                    {(() => {
-                      let specialities = [];
+                    {getSpecialities(item.speciality)
+                      .slice(0, 2)
+                      .map((speciality, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1.5 rounded-full bg-[#F1F5FF] text-[#0b2149] border border-[#DCE5FF] text-xs font-semibold whitespace-nowrap"
+                        >
+                          {speciality}
+                        </span>
+                      ))}
 
-                      if (Array.isArray(item.speciality)) {
-                        specialities = item.speciality;
-                      } else if (typeof item.speciality === "string") {
-                        try {
-                          const parsed = JSON.parse(item.speciality);
-                          specialities = Array.isArray(parsed)
-                            ? parsed
-                            : [item.speciality];
-                        } catch {
-                          specialities = [item.speciality];
-                        }
-                      }
-
-                      return (
-                        <>
-                          {specialities.slice(0, 2).map((speciality, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 rounded-full bg-[#F1F5FF] text-[#0b2149] border border-[#DCE5FF] text-xs font-semibold whitespace-nowrap"
-                            >
-                              {speciality}
-                            </span>
-                          ))}
-
-                          {specialities.length > 3 && (
-                            <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-semibold whitespace-nowrap">
-                              +{specialities.length - 2} more
-                            </span>
-                          )}
-                        </>
-                      );
-                    })()}
+                    {getSpecialities(item.speciality).length > 2 && (
+                      <span className="px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200 text-xs font-semibold whitespace-nowrap">
+                        +{getSpecialities(item.speciality).length - 2} more
+                      </span>
+                    )}
                   </div>
                 </div>
 
