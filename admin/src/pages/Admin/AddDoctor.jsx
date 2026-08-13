@@ -8,11 +8,12 @@ const AddDoctor = () => {
   const [docImg, setDocImg] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [password, setPassword] = useState("");
   const [experience, setExperience] = useState("1 Year");
   const [fees, setFees] = useState("");
   const [about, setAbout] = useState("");
-  const [speciality, setSpeciality] = useState("Criminal Law");
+  const [speciality, setSpeciality] = useState([]);
   const [degree, setDegree] = useState("");
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
@@ -23,6 +24,21 @@ const AddDoctor = () => {
   const [advocateId, setAdvocateId] = useState("");
   const [barCertificate, setBarCertificate] = useState(false);
   const [degreeCertificate, setDegreeCertificate] = useState(false);
+  const specialities = [
+    "Criminal Law",
+    "Civil Law",
+    "Family Law",
+    "Property Law",
+    "Corporate Law",
+    "Constitutional Law",
+    "Cyber Law",
+    "Tax Law",
+    "Divorce Law",
+    "Labour Law",
+    "Consumer Law",
+    "Intellectual Property Law",
+    "Environmental Law",
+  ];
 
   const { backendUrl, aToken } = useContext(AdminContext);
 
@@ -40,11 +56,12 @@ const AddDoctor = () => {
       formData.append("image", docImg);
       formData.append("name", name);
       formData.append("email", email);
+      formData.append("whatsapp", whatsapp);
       formData.append("password", password);
       formData.append("experience", experience);
       formData.append("fees", Number(fees));
       formData.append("about", about);
-      formData.append("speciality", speciality);
+      formData.append("speciality", JSON.stringify(speciality));
       formData.append("degree", degree);
 
       formData.append(
@@ -79,6 +96,7 @@ const AddDoctor = () => {
         setLoading(false);
         setDocImg(false);
         setName("");
+        setWhatsapp("");
         setPassword("");
         setEmail("");
         setAddress1("");
@@ -180,6 +198,18 @@ const AddDoctor = () => {
               />
             </div>
 
+            <div className="mb-2 text-sm font-medium text-[#0b2149]">
+              <p>WhatsApp Number</p>
+
+              <input
+                type="text"
+                value={whatsapp}
+                onChange={(e) => setWhatsapp(e.target.value)}
+                placeholder="+912314567247"
+                className="w-full border border-gray-300 rounded-2xl px-4 py-3 outline-none focus:border-[#0b2149]"
+              />
+            </div>
+
             <div>
               <p className="mb-2 text-sm font-medium text-[#0b2149]">
                 Password
@@ -257,23 +287,36 @@ const AddDoctor = () => {
           {/* RIGHT */}
 
           <div className="flex flex-col gap-5">
-            <div>
-              <p className="mb-2 text-sm font-medium text-[#0b2149]">
-                Legal Speciality
-              </p>
+            <p className="mb-0 text-sm font-medium text-[#0b2149]">
+              Legal Speciality
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-0">
+              {specialities.map((item) => (
+                <label
+                  key={item}
+                  className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all
+        ${
+          speciality.includes(item)
+            ? "border-[#0b2149] bg-[#0b2149]/5"
+            : "border-gray-200 hover:border-[#0b2149]"
+        }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={speciality.includes(item)}
+                    onChange={() => {
+                      setSpeciality((prev) =>
+                        prev.includes(item)
+                          ? prev.filter((x) => x !== item)
+                          : [...prev, item],
+                      );
+                    }}
+                    className="w-4 h-4 accent-[#0b2149]"
+                  />
 
-              <select
-                onChange={(e) => setSpeciality(e.target.value)}
-                value={speciality}
-                className="w-full border border-gray-300 rounded-2xl px-4 py-3 outline-none focus:border-[#0b2149]"
-              >
-                <option value="Criminal Law">Criminal Law</option>
-                <option value="Family Law">Family Law</option>
-                <option value="Corporate Law">Corporate Law</option>
-                <option value="Civil Law">Civil Law</option>
-                <option value="Property Law">Property Law</option>
-                <option value="Cyber Law">Cyber Law</option>
-              </select>
+                  <span className="text-sm text-gray-700">{item}</span>
+                </label>
+              ))}
             </div>
 
             <div>

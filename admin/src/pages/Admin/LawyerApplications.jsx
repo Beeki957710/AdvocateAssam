@@ -67,7 +67,9 @@ const LawyerApplications = () => {
 
   return (
     <div className="m-5">
-      <h1 className="text-3xl font-bold mb-5 text-[#0b2149]">Lawyer Applications</h1>
+      <h1 className="text-3xl font-bold mb-5 text-[#0b2149]">
+        Lawyer Applications
+      </h1>
 
       <div className="grid gap-4">
         {applications.map((item) => (
@@ -90,14 +92,30 @@ const LawyerApplications = () => {
                 </h2>
 
                 <p className="text-gray-600">{item.email}</p>
-                <p className="text-gray-600">whatsapp:{item.whatsapp}</p>
-
+                <p className="text-gray-600">
+                  <span className="font-semibold">WhatsApp:</span>{" "}
+                  {item.whatsapp}
+                </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
-                  <p>
-                    <span className="font-semibold">Speciality:</span>{" "}
-                    {item.speciality}
-                  </p>
+                  <div>
+                    <span className="font-semibold">Speciality:</span>
+
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {Array.isArray(item.speciality) ? (
+                        item.speciality.map((speciality, index) => (
+                          <span
+                            key={index}
+                            className="bg-[#0b2149]/10 text-[#0b2149] px-3 py-1 rounded-full text-sm"
+                          >
+                            {speciality}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-gray-600">{item.speciality}</span>
+                      )}
+                    </div>
+                  </div>
 
                   <p>
                     <span className="font-semibold">Degree:</span> {item.degree}

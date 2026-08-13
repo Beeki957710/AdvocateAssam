@@ -13,7 +13,7 @@ const VerifyAsLawyer = () => {
   const [experience, setExperience] = useState("1 Year");
   const [fees, setFees] = useState("");
   const [about, setAbout] = useState("");
-  const [speciality, setSpeciality] = useState("Criminal Law");
+  const [speciality, setSpeciality] = useState([]);
   const [degree, setDegree] = useState("");
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
@@ -26,6 +26,22 @@ const VerifyAsLawyer = () => {
   const [degreeCertificate, setDegreeCertificate] = useState(false);
 
   const { backendUrl, dToken } = useContext(DoctorContext);
+
+  const specialities = [
+    "Criminal Law",
+    "Civil Law",
+    "Family Law",
+    "Property Law",
+    "Corporate Law",
+    "Constitutional Law",
+    "Cyber Law",
+    "Tax Law",
+    "Divorce Law",
+    "Labour Law",
+    "Consumer Law",
+    "Intellectual Property Law",
+    "Environmental Law",
+  ];
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -46,7 +62,7 @@ const VerifyAsLawyer = () => {
       formData.append("experience", experience);
       formData.append("fees", Number(fees));
       formData.append("about", about);
-      formData.append("speciality", speciality);
+      formData.append("speciality", JSON.stringify(speciality));
       formData.append("degree", degree);
 
       formData.append(
@@ -108,7 +124,11 @@ const VerifyAsLawyer = () => {
       <div className="max-w-6xl mb-8">
         {/* Logo */}
         <div className="flex items-center gap-4 mb-6">
-          <img src={assets.logo} alt="NyaySetu" className="w-44 md:w-56 rounded-2xl" />
+          <img
+            src={assets.logo}
+            alt="NyaySetu"
+            className="w-44 md:w-56 rounded-2xl"
+          />
 
           <div className="hidden md:block h-10 w-[1px] bg-gray-300"></div>
 
@@ -132,9 +152,9 @@ const VerifyAsLawyer = () => {
               </h1>
 
               <p className="mt-3 text-gray-200 max-w-2xl">
-                Join AdvocateAssam and connect with clients seeking trusted legal
-                professionals. Submit your professional credentials for review
-                and verification.
+                Join AdvocateAssam and connect with clients seeking trusted
+                legal professionals. Submit your professional credentials for
+                review and verification.
               </p>
 
               <div className="flex flex-wrap gap-3 mt-5">
@@ -325,7 +345,7 @@ const VerifyAsLawyer = () => {
           {/* RIGHT */}
 
           <div className="flex flex-col gap-5">
-            <div>
+            {/* <div>
               <p className="mb-2 text-sm font-medium text-[#0b2149]">
                 Legal Speciality
               </p>
@@ -342,6 +362,34 @@ const VerifyAsLawyer = () => {
                 <option value="Property Law">Property Law</option>
                 <option value="Cyber Law">Cyber Law</option>
               </select>
+            </div>  */}
+            <p className="mb-0 text-sm font-medium text-[#0b2149]">
+                Legal Speciality
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-0">
+              {specialities.map((item) => (
+                <label key={item} className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all
+                  ${
+                    speciality.includes(item)
+                    ? "border-[#0b2149] bg-[#0b2149]/5"
+                    : "border-gray-200 hover:border-[#0b2149]"
+                  }`}>
+                  <input
+                    type="checkbox"
+                    checked={speciality.includes(item)}
+                    onChange={() => {
+                      setSpeciality((prev) =>
+                        prev.includes(item)
+                          ? prev.filter((x) => x !== item)
+                          : [...prev, item],
+                      );
+                    }}
+                    className="w-4 h-4 accent-[#0b2149]"
+                  />
+
+                  <span className="text-sm text-gray-700">{item}</span>
+                </label>
+              ))}
             </div>
 
             <div>
@@ -483,7 +531,7 @@ const VerifyAsLawyer = () => {
           {loading ? (
             <>
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Uploading Lawyer...
+              Submitting Application...
             </>
           ) : (
             "Submit Verification Application"

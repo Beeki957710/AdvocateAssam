@@ -64,7 +64,41 @@ const DoctorList = () => {
             <div className="p-5">
               <h2 className="text-xl font-bold text-[#0b2149]">{item.name}</h2>
 
-              <p className="text-sm text-gray-500 mt-1">{item.speciality}</p>
+              <div className="mt-3">
+                  <p className="text-xs text-gray-400 mb-2">Specialities</p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {(() => {
+                      let specialities = [];
+
+                      if (Array.isArray(item.speciality)) {
+                        specialities = item.speciality;
+                      } else if (typeof item.speciality === "string") {
+                        try {
+                          const parsed = JSON.parse(item.speciality);
+                          specialities = Array.isArray(parsed)
+                            ? parsed
+                            : [item.speciality];
+                        } catch {
+                          specialities = [item.speciality];
+                        }
+                      }
+
+                      return (
+                        <>
+                          {specialities.map((speciality, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1 rounded-full bg-[#F1F5FF] text-[#0b2149] border border-[#DCE5FF] text-xs font-semibold whitespace-nowrap"
+                            >
+                              {speciality}
+                            </span>
+                          ))}
+                        </>
+                      );
+                    })()}
+                  </div>
+                </div>
 
               {/* Experience */}
 
