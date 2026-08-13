@@ -12,11 +12,39 @@ const Doctors = () => {
   const { doctors } = useContext(AppContext);
 
   const applyFilter = () => {
-    if (speciality) {
-      setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
-    } else {
+    if (!speciality) {
       setFilterDoc(doctors);
+      return;
     }
+
+    const filtered = doctors.filter((doc) => {
+      let specialities = [];
+
+      // Case 1: speciality is already an array
+      if (Array.isArray(doc.speciality)) {
+        specialities = doc.speciality;
+      }
+
+      // Case 2: speciality is a JSON string
+      else if (typeof doc.speciality === "string") {
+        try {
+          const parsed = JSON.parse(doc.speciality);
+
+          if (Array.isArray(parsed)) {
+            specialities = parsed;
+          } else {
+            specialities = [doc.speciality];
+          }
+        } catch {
+          // Case 3: normal single speciality string
+          specialities = [doc.speciality];
+        }
+      }
+
+      return specialities.includes(speciality);
+    });
+
+    setFilterDoc(filtered);
   };
 
   useEffect(() => {
@@ -47,7 +75,7 @@ const Doctors = () => {
             onClick={() =>
               speciality === "Criminal Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Criminal Law")
+                : navigate(`/doctors/${encodeURIComponent("Criminal Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Criminal Law"
@@ -62,7 +90,7 @@ const Doctors = () => {
             onClick={() =>
               speciality === "Family Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Family Law")
+                : navigate(`/doctors/${encodeURIComponent("Family Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Family Law"
@@ -77,7 +105,7 @@ const Doctors = () => {
             onClick={() =>
               speciality === "Corporate Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Corporate Law")
+                : navigate(`/doctors/${encodeURIComponent("Corporate Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Corporate Law"
@@ -92,7 +120,7 @@ const Doctors = () => {
             onClick={() =>
               speciality === "Civil Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Civil Law")
+                : navigate(`/doctors/${encodeURIComponent("Civil Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Civil Law"
@@ -107,7 +135,7 @@ const Doctors = () => {
             onClick={() =>
               speciality === "Property Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Property Law")
+                :  navigate(`/doctors/${encodeURIComponent("Property Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Property Law"
@@ -122,7 +150,7 @@ const Doctors = () => {
             onClick={() =>
               speciality === "Cyber Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Cyber Law")
+                :  navigate(`/doctors/${encodeURIComponent("Cyber Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Cyber Law"
@@ -132,11 +160,11 @@ const Doctors = () => {
           >
             Cyber Lawyer
           </p>
-           <p
+          <p
             onClick={() =>
               speciality === "Consumer Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Consumer Law")
+                :  navigate(`/doctors/${encodeURIComponent("Consumer Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Consumer Law"
@@ -146,11 +174,11 @@ const Doctors = () => {
           >
             Consumer Lawyer
           </p>
-             <p
+          <p
             onClick={() =>
               speciality === "Tax Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Tax Law")
+                :  navigate(`/doctors/${encodeURIComponent("Tax Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Tax Law"
@@ -160,11 +188,11 @@ const Doctors = () => {
           >
             Tax Lawyer
           </p>
-             <p
+          <p
             onClick={() =>
               speciality === "Environmental Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Environmental Law")
+                :  navigate(`/doctors/${encodeURIComponent("Environmental Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Environmental Law"
@@ -174,11 +202,11 @@ const Doctors = () => {
           >
             Environmental Lawyer
           </p>
-             <p
+          <p
             onClick={() =>
               speciality === "Constitutional Law"
                 ? navigate("/doctors")
-                : navigate("/doctors/Constitutional Law")
+                :  navigate(`/doctors/${encodeURIComponent("Constitutional Law")}`)
             }
             className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
               speciality === "Constitutional Law"
@@ -187,6 +215,48 @@ const Doctors = () => {
             }`}
           >
             Constitutional Lawyer
+          </p>
+           <p
+            onClick={() =>
+              speciality === "Divorce Law"
+                ? navigate("/doctors")
+                :  navigate(`/doctors/${encodeURIComponent("Divorce Law")}`)
+            }
+            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
+              speciality === "Divorce Law"
+                ? "bg-primary text-white border-primary"
+                : "hover:border-primary"
+            }`}
+          >
+            Divorce Lawyer
+          </p>
+          <p
+            onClick={() =>
+              speciality === "Labour Law"
+                ? navigate("/doctors")
+                :  navigate(`/doctors/${encodeURIComponent("Labour Law")}`)
+            }
+            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
+              speciality === "Labour Law"
+                ? "bg-primary text-white border-primary"
+                : "hover:border-primary"
+            }`}
+          >
+            Labour Lawyer
+          </p>
+            <p
+            onClick={() =>
+              speciality === "Intellectual Property Law"
+                ? navigate("/doctors")
+                :  navigate(`/doctors/${encodeURIComponent("Intellectual Property Law")}`)
+            }
+            className={`w-[220px] pl-4 py-3 border rounded-lg transition-all cursor-pointer ${
+              speciality === "Intellectual Property Law"
+                ? "bg-primary text-white border-primary"
+                : "hover:border-primary"
+            }`}
+          >
+            Intellectual Property Lawyer
           </p>
         </div>
 
@@ -225,7 +295,49 @@ const Doctors = () => {
                   {item.name}
                 </h2>
 
-                <p className="text-sm text-gray-500 mt-1">{item.speciality}</p>
+                {/* Specialities */}
+
+                <div className="mt-3">
+                  <p className="text-xs text-gray-400 mb-2">Specialities</p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {(() => {
+                      let specialities = [];
+
+                      if (Array.isArray(item.speciality)) {
+                        specialities = item.speciality;
+                      } else if (typeof item.speciality === "string") {
+                        try {
+                          const parsed = JSON.parse(item.speciality);
+                          specialities = Array.isArray(parsed)
+                            ? parsed
+                            : [item.speciality];
+                        } catch {
+                          specialities = [item.speciality];
+                        }
+                      }
+
+                      return (
+                        <>
+                          {specialities.slice(0, 2).map((speciality, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1 rounded-full bg-[#F1F5FF] text-[#0b2149] border border-[#DCE5FF] text-xs font-semibold whitespace-nowrap"
+                            >
+                              {speciality}
+                            </span>
+                          ))}
+
+                          {specialities.length > 3 && (
+                            <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-semibold whitespace-nowrap">
+                              +{specialities.length - 2} more
+                            </span>
+                          )}
+                        </>
+                      );
+                    })()}
+                  </div>
+                </div>
 
                 {/* Experience */}
 
@@ -236,7 +348,6 @@ const Doctors = () => {
                     <p className="font-semibold text-[#0b2149]">
                       {item.experience}
                     </p>
-                   
                   </div>
 
                   <div>

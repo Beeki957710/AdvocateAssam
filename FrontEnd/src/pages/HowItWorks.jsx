@@ -69,7 +69,7 @@ const HowItWorks = () => {
     },
   ];
 
-   const handleNavigation = (path) => {
+  const handleNavigation = (path) => {
     navigate(path);
 
     setTimeout(() => {
@@ -83,27 +83,93 @@ const HowItWorks = () => {
   return (
     <div className="bg-white text-gray-800">
       {/* ================= HERO ================= */}
-      <section className="bg-primary rounded-xl relative overflow-hidden">
-        {/* Decorative circles */}
-        <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full border border-[#D4AF37]/10" />
-        <div className="absolute -bottom-40 -left-32 w-96 h-96 rounded-full border border-[#D4AF37]/10" />
+      <section className="relative overflow-hidden rounded-3xl bg-primary">
+        {/* Background Glow */}
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-32 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+
+        {/* Decorative Rings */}
+        <div className="absolute top-10 right-10 w-56 h-56 rounded-full border border-[#D4AF37]/10" />
+        <div className="absolute top-20 right-20 w-36 h-36 rounded-full border border-[#D4AF37]/10" />
 
         <div className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-[#D4AF37]/30 text-[#D4AF37] text-sm mb-6">
-              <span>⚖</span>
-              <span>Simple. Secure. Professional.</span>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div>
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-[#D4AF37]/30 backdrop-blur-sm">
+                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#D4AF37] text-[#071A2B] text-sm">
+                  ⚖
+                </span>
+
+                <span className="text-[#D4AF37] text-sm font-medium">
+                  Simple • Secure • Professional
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mt-7">
+                Your Legal Journey,
+                <span className="block text-[#D4AF37]">Made Simple.</span>
+              </h1>
+
+              {/* Description */}
+              <p className="mt-6 text-gray-300 text-base md:text-lg leading-8 max-w-xl">
+                AdvocateAssam connects you with verified legal professionals,
+                making it easier to find the right lawyer, book consultations,
+                and get the legal assistance you need.
+              </p>
+
+              {/* Mini Stats */}
+              <div className="flex flex-wrap gap-8 mt-8">
+                <div>
+                  <p className="text-2xl font-bold text-white">✓</p>
+                  <p className="text-xs text-gray-400 mt-1">Verified Lawyers</p>
+                </div>
+
+                <div>
+                  <p className="text-2xl font-bold text-white">⚡</p>
+                  <p className="text-xs text-gray-400 mt-1">Easy Booking</p>
+                </div>
+
+                <div>
+                  <p className="text-2xl font-bold text-white">🔒</p>
+                  <p className="text-xs text-gray-400 mt-1">Secure Platform</p>
+                </div>
+              </div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              How <span className="text-[#D4AF37]">AdvocateAssam</span> Works
-            </h1>
+            {/* Right Visual */}
+            <div className="hidden lg:flex justify-center">
+              <div className="relative w-[360px] h-[360px]">
+                {/* Outer Circle */}
+                <div className="absolute inset-0 rounded-full border border-[#D4AF37]/20" />
 
-            <p className="mt-6 text-gray-300 text-base md:text-lg leading-8 max-w-2xl mx-auto">
-              Finding the right legal professional shouldn't be complicated.
-              AdvocateAssam makes it simple to discover verified lawyers, book
-              consultations, and get the legal assistance you need.
-            </p>
+                {/* Middle Circle */}
+                <div className="absolute inset-8 rounded-full border border-[#D4AF37]/20" />
+
+                {/* Inner Circle */}
+                <div className="absolute inset-16 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center">
+                  <div className="w-28 h-28 rounded-3xl bg-[#D4AF37] flex items-center justify-center shadow-2xl shadow-[#D4AF37]/20">
+                    <span className="text-6xl text-[#071A2B]">⚖</span>
+                  </div>
+                </div>
+
+                {/* Floating Card 1 */}
+                <div className="absolute top-10 -left-8 bg-white rounded-2xl px-4 py-3 shadow-xl">
+                  <p className="text-xs text-gray-400">Professional</p>
+
+                  <p className="font-bold text-[#071A2B]">Verified Lawyers</p>
+                </div>
+
+                {/* Floating Card 2 */}
+                <div className="absolute bottom-10 -right-8 bg-white rounded-2xl px-4 py-3 shadow-xl">
+                  <p className="text-xs text-gray-400">Consultation</p>
+
+                  <p className="font-bold text-[#071A2B]">Easy Booking</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -179,7 +245,7 @@ const HowItWorks = () => {
               </p>
 
               <button
-                onClick={() => navigate("/doctors")}
+                onClick={() => handleNavigation ("/doctors")}
                 className="mt-8 px-7 py-3 rounded-lg bg-[#071A2B] text-white font-semibold hover:bg-[#0d2a43] transition-all duration-300 hover:shadow-lg"
               >
                 Find a Lawyer
@@ -231,12 +297,12 @@ const HowItWorks = () => {
 
           <button
             onClick={() =>
-            window.open(
-              "https://api.advocateassam.com/verify-lawyer",
-              "_blank",
-              "noopener,noreferrer",
-            )
-          }
+              window.open(
+                "https://api.advocateassam.com/verify-lawyer",
+                "_blank",
+                "noopener,noreferrer",
+              )
+            }
             className="mt-8 px-8 py-3.5 rounded-lg bg-[#D4AF37] text-primary font-semibold hover:bg-[#e5c354] transition-all duration-300 hover:shadow-lg"
           >
             Join as a Lawyer
@@ -245,32 +311,94 @@ const HowItWorks = () => {
         </div>
       </section>
 
+     
       {/* ================= CTA ================= */}
-      <section className="px-6 pb-20">
-        <div className="max-w-6xl mx-auto bg-primary rounded-3xl px-8 md:px-16 py-14 text-center relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full border border-[#D4AF37]/10" />
+      <section className="px-4 sm:px-6 pb-20">
+        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2rem] bg-primary">
+          {/* Background Glow */}
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#D4AF37]/15 rounded-full blur-3xl" />
 
-          <div className="relative">
-            <p className="text-[#D4AF37] font-semibold text-sm uppercase tracking-[0.2em]">
-              Get Started Today
-            </p>
+          <div className="absolute -bottom-40 -left-32 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-3">
-              Find the right legal professional for you.
-            </h2>
+          {/* Decorative Circles */}
+          <div className="absolute top-8 right-8 w-44 h-44 rounded-full border border-[#D4AF37]/10" />
 
-            <p className="text-gray-300 mt-4 max-w-xl mx-auto leading-7">
-              Explore verified lawyers and book a consultation that fits your
-              needs.
-            </p>
+          <div className="absolute top-16 right-16 w-28 h-28 rounded-full border border-[#D4AF37]/10" />
 
-            <button
-              onClick={() => handleNavigation("/doctors")}
-              className="mt-8 px-8 py-3.5 rounded-lg bg-[#D4AF37] text-[#071A2B] font-semibold hover:bg-[#e5c354] transition-all duration-300"
-            >
-              Explore Lawyers
-              <span className="ml-2">→</span>
-            </button>
+          <div className="relative px-8 md:px-16 py-16 md:py-20">
+            <div className="max-w-3xl mx-auto text-center">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-[#D4AF37]/30">
+                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+
+                <span className="text-[#D4AF37] text-xs font-semibold uppercase tracking-widest">
+                  Get Started Today
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h2 className="text-3xl md:text-5xl font-bold text-white mt-6 leading-tight">
+                Find the Right Lawyer
+                <span className="block text-[#D4AF37]">
+                  For Your Legal Needs.
+                </span>
+              </h2>
+
+              {/* Description */}
+              <p className="text-gray-300 mt-5 max-w-xl mx-auto leading-7 text-sm md:text-base">
+                Explore verified legal professionals, compare their expertise,
+                and book a consultation at your convenience.
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                <button
+                  onClick={() => handleNavigation("/doctors")}
+                  className="
+              px-8
+              py-3.5
+              rounded-xl
+              bg-[#D4AF37]
+              text-[#071A2B]
+              font-bold
+              shadow-lg
+              shadow-[#D4AF37]/10
+              hover:bg-[#E5C354]
+              hover:-translate-y-1
+              transition-all
+              duration-300
+            "
+                >
+                  Explore Lawyers
+                  <span className="ml-2">→</span>
+                </button>
+
+                <button
+                  onClick={() => handleNavigation("/doctors")}
+                  className="
+              px-8
+              py-3.5
+              rounded-xl
+              border
+              border-white/20
+              text-white
+              font-semibold
+              hover:bg-white/10
+              transition-all
+              duration-300
+            "
+                >
+                  Book a Consultation
+                </button>
+              </div>
+
+              {/* Trust Text */}
+              <div className="flex flex-wrap justify-center gap-6 mt-8 text-xs text-gray-400">
+                <span>✓ Verified Professionals</span>
+                <span>✓ Secure Payments</span>
+                <span>✓ Easy Scheduling</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
