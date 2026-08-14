@@ -1,6 +1,16 @@
 import React from "react";
 import { assets } from "../assets/assets_frontend/assets";
 import { NavLink } from "react-router-dom";
+import {
+  Scale,
+  ShieldCheck,
+  CalendarDays,
+  Search,
+  MessageCircle,
+  CheckCircle2,
+  Clock3,
+  CreditCard,
+} from "lucide-react";
 
 const Header = () => {
   return (
@@ -88,30 +98,40 @@ const Header = () => {
           </div>
 
           {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-6">
+                <div className="flex flex-wrap gap-8 mt-8">
+                <div>
+                  <CheckCircle2
+                    size={25}
+                    strokeWidth={1.8}
+                    className="text-white"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Verified Lawyers
+                  </p>
+                </div>
 
-            <div className="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 text-green-400">
-                ✓
-              </span>
-              Verified Lawyers
-            </div>
+                <div>
+                  <Clock3
+                    size={25}
+                    strokeWidth={1.8}
+                    className="text-white"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Easy Booking
+                  </p>
+                </div>
 
-            <div className="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 text-[#D4A017]">
-                🔒
-              </span>
-              Secure Platform
-            </div>
-
-            <div className="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 text-blue-400">
-                ⚡
-              </span>
-              Easy Booking
-            </div>
-
-          </div>
+                <div>
+                  <ShieldCheck
+                    size={25}
+                    strokeWidth={1.8}
+                    className="text-white"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Secure Platform
+                  </p>
+                </div>
+              </div>
 
           {/* Stats */}
           <div className="flex flex-wrap items-center gap-5 sm:gap-8 mt-7 pt-5 border-t border-white/10 max-w-2xl">

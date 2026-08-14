@@ -33,7 +33,7 @@ const Footer = () => {
             <img
               src={assets.logo}
               alt="AdvocateAssam"
-              className="w-52 rounded-2xl bg-white p-2 shadow-lg"
+              className="w-52 rounded-full bg-primary p-2 shadow-lg"
             />
 
             <p className="mt-6 max-w-sm text-sm leading-7 text-slate-300">
