@@ -1,5 +1,16 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import {
+  Scale,
+  ShieldCheck,
+  CalendarDays,
+  Search,
+  MessageCircle,
+  CheckCircle2,
+  Clock3,
+  CreditCard,
+} from "lucide-react";
 
 const HowItWorks = () => {
   const navigate = useNavigate();
@@ -7,35 +18,35 @@ const HowItWorks = () => {
   const steps = [
     {
       number: "01",
-      icon: "🔍",
+      icon: Search,
       title: "Find a Lawyer",
       description:
         "Search and explore verified lawyers based on their practice area, experience, and professional expertise.",
     },
     {
       number: "02",
-      icon: "👨‍⚖️",
+      icon: Scale,
       title: "Choose Your Lawyer",
       description:
         "Review lawyer profiles, qualifications, experience, consultation fees, and availability before making your choice.",
     },
     {
       number: "03",
-      icon: "📅",
+      icon: CalendarDays,
       title: "Book a Consultation",
       description:
         "Select a convenient date and available time slot to schedule your legal consultation.",
     },
     {
       number: "04",
-      icon: "💳",
+      icon: CreditCard,
       title: "Make Secure Payment",
       description:
         "Complete your consultation booking through our secure online payment system.",
     },
     {
       number: "05",
-      icon: "💬",
+      icon: MessageCircle,
       title: "Connect With Your Lawyer",
       description:
         "After booking, connect with your lawyer and discuss your legal concerns securely and conveniently.",
@@ -44,25 +55,25 @@ const HowItWorks = () => {
 
   const benefits = [
     {
-      icon: "✓",
+      icon: CheckCircle2,
       title: "Verified Lawyers",
       description:
         "Lawyer profiles go through a verification process before being listed on the platform.",
     },
     {
-      icon: "🔒",
+      icon: ShieldCheck,
       title: "Secure Platform",
       description:
         "Your account and personal information are protected using secure authentication and data handling.",
     },
     {
-      icon: "⚡",
+      icon: Clock3,
       title: "Easy Booking",
       description:
         "Find lawyers and schedule consultations through a simple and convenient booking experience.",
     },
     {
-      icon: "💰",
+      icon: Scale,
       title: "Transparent Fees",
       description:
         "View consultation fees before booking so you can make informed decisions.",
@@ -98,8 +109,8 @@ const HowItWorks = () => {
             <div>
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-[#D4AF37]/30 backdrop-blur-sm">
-                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#D4AF37] text-[#071A2B] text-sm">
-                  ⚖
+                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#D4AF37] text-[#071A2B]">
+                  <Scale size={14} strokeWidth={2} />
                 </span>
 
                 <span className="text-[#D4AF37] text-sm font-medium">
@@ -110,7 +121,9 @@ const HowItWorks = () => {
               {/* Heading */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mt-7">
                 Your Legal Journey,
-                <span className="block text-[#D4AF37]">Made Simple.</span>
+                <span className="block text-[#D4AF37]">
+                  Made Simple.
+                </span>
               </h1>
 
               {/* Description */}
@@ -123,18 +136,36 @@ const HowItWorks = () => {
               {/* Mini Stats */}
               <div className="flex flex-wrap gap-8 mt-8">
                 <div>
-                  <p className="text-2xl font-bold text-white">✓</p>
-                  <p className="text-xs text-gray-400 mt-1">Verified Lawyers</p>
+                  <CheckCircle2
+                    size={25}
+                    strokeWidth={1.8}
+                    className="text-white"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Verified Lawyers
+                  </p>
                 </div>
 
                 <div>
-                  <p className="text-2xl font-bold text-white">⚡</p>
-                  <p className="text-xs text-gray-400 mt-1">Easy Booking</p>
+                  <Clock3
+                    size={25}
+                    strokeWidth={1.8}
+                    className="text-white"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Easy Booking
+                  </p>
                 </div>
 
                 <div>
-                  <p className="text-2xl font-bold text-white">🔒</p>
-                  <p className="text-xs text-gray-400 mt-1">Secure Platform</p>
+                  <ShieldCheck
+                    size={25}
+                    strokeWidth={1.8}
+                    className="text-white"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Secure Platform
+                  </p>
                 </div>
               </div>
             </div>
@@ -151,22 +182,34 @@ const HowItWorks = () => {
                 {/* Inner Circle */}
                 <div className="absolute inset-16 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center">
                   <div className="w-28 h-28 rounded-3xl bg-[#D4AF37] flex items-center justify-center shadow-2xl shadow-[#D4AF37]/20">
-                    <span className="text-6xl text-[#071A2B]">⚖</span>
+                    <Scale
+                      size={58}
+                      strokeWidth={1.5}
+                      className="text-[#071A2B]"
+                    />
                   </div>
                 </div>
 
                 {/* Floating Card 1 */}
                 <div className="absolute top-10 -left-8 bg-white rounded-2xl px-4 py-3 shadow-xl">
-                  <p className="text-xs text-gray-400">Professional</p>
+                  <p className="text-xs text-gray-400">
+                    Professional
+                  </p>
 
-                  <p className="font-bold text-[#071A2B]">Verified Lawyers</p>
+                  <p className="font-bold text-[#071A2B]">
+                    Verified Lawyers
+                  </p>
                 </div>
 
                 {/* Floating Card 2 */}
                 <div className="absolute bottom-10 -right-8 bg-white rounded-2xl px-4 py-3 shadow-xl">
-                  <p className="text-xs text-gray-400">Consultation</p>
+                  <p className="text-xs text-gray-400">
+                    Consultation
+                  </p>
 
-                  <p className="font-bold text-[#071A2B]">Easy Booking</p>
+                  <p className="font-bold text-[#071A2B]">
+                    Easy Booking
+                  </p>
                 </div>
               </div>
             </div>
@@ -198,26 +241,37 @@ const HowItWorks = () => {
             <div className="hidden lg:block absolute top-16 left-[10%] right-[10%] border-t-2 border-dashed border-[#D4AF37]/30" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
-              {steps.map((step, index) => (
-                <div key={index} className="relative text-center group">
-                  {/* Number/Icon */}
-                  <div className="relative mx-auto w-32 h-32 rounded-full bg-white border border-gray-200 shadow-lg flex flex-col items-center justify-center group-hover:border-[#D4AF37] group-hover:shadow-xl transition-all duration-300">
-                    <span className="text-3xl">{step.icon}</span>
+              {steps.map((step, index) => {
+                const StepIcon = step.icon;
 
-                    <span className="text-[#D4AF37] text-xs font-bold mt-2">
-                      STEP {step.number}
-                    </span>
+                return (
+                  <div
+                    key={index}
+                    className="relative text-center group"
+                  >
+                    {/* Number/Icon */}
+                    <div className="relative mx-auto w-32 h-32 rounded-full bg-white border border-gray-200 shadow-lg flex flex-col items-center justify-center group-hover:border-[#D4AF37] group-hover:shadow-xl transition-all duration-300">
+                      <StepIcon
+                        size={30}
+                        strokeWidth={1.8}
+                        className="text-[#0b2149]"
+                      />
+
+                      <span className="text-[#D4AF37] text-xs font-bold mt-2">
+                        STEP {step.number}
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-semibold text-[#071A2B] mt-7">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-sm text-gray-500 leading-6 mt-3">
+                      {step.description}
+                    </p>
                   </div>
-
-                  <h3 className="text-lg font-semibold text-[#071A2B] mt-7">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-sm text-gray-500 leading-6 mt-3">
-                    {step.description}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -235,7 +289,10 @@ const HowItWorks = () => {
 
               <h2 className="text-3xl md:text-4xl font-bold text-primary mt-3 leading-tight">
                 Legal assistance made
-                <span className="text-[#C49A2C]"> simple and accessible.</span>
+                <span className="text-[#C49A2C]">
+                  {" "}
+                  simple and accessible.
+                </span>
               </h2>
 
               <p className="text-gray-500 mt-5 leading-7">
@@ -245,7 +302,7 @@ const HowItWorks = () => {
               </p>
 
               <button
-                onClick={() => handleNavigation ("/doctors")}
+                onClick={() => handleNavigation("/doctors")}
                 className="mt-8 px-7 py-3 rounded-lg bg-[#071A2B] text-white font-semibold hover:bg-[#0d2a43] transition-all duration-300 hover:shadow-lg"
               >
                 Find a Lawyer
@@ -255,24 +312,28 @@ const HowItWorks = () => {
 
             {/* Right */}
             <div className="grid sm:grid-cols-2 gap-5">
-              {benefits.map((benefit, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                >
-                  <div className="w-11 h-11 rounded-xl bg-[#071A2B] flex items-center justify-center text-[#D4AF37] text-lg">
-                    {benefit.icon}
+              {benefits.map((benefit, index) => {
+                const BenefitIcon = benefit.icon;
+
+                return (
+                  <div
+                    key={index}
+                    className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <div className="w-11 h-11 rounded-xl bg-[#071A2B] flex items-center justify-center text-[#D4AF37]">
+                      <BenefitIcon size={20} strokeWidth={1.8} />
+                    </div>
+
+                    <h3 className="font-semibold text-[#071A2B] mt-5">
+                      {benefit.title}
+                    </h3>
+
+                    <p className="text-sm text-gray-500 leading-6 mt-2">
+                      {benefit.description}
+                    </p>
                   </div>
-
-                  <h3 className="font-semibold text-[#071A2B] mt-5">
-                    {benefit.title}
-                  </h3>
-
-                  <p className="text-sm text-gray-500 leading-6 mt-2">
-                    {benefit.description}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -281,8 +342,12 @@ const HowItWorks = () => {
       {/* ================= LAWYER SECTION ================= */}
       <section className="py-20 md:py-24">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-primary flex items-center justify-center text-3xl shadow-lg">
-            <span className="text-white">⚖</span>
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-primary flex items-center justify-center shadow-lg">
+            <Scale
+              size={34}
+              strokeWidth={1.6}
+              className="text-white"
+            />
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-primary mt-6">
@@ -300,7 +365,7 @@ const HowItWorks = () => {
               window.open(
                 "https://api.advocateassam.com/verify-lawyer",
                 "_blank",
-                "noopener,noreferrer",
+                "noopener,noreferrer"
               )
             }
             className="mt-8 px-8 py-3.5 rounded-lg bg-[#D4AF37] text-primary font-semibold hover:bg-[#e5c354] transition-all duration-300 hover:shadow-lg"
@@ -311,7 +376,6 @@ const HowItWorks = () => {
         </div>
       </section>
 
-     
       {/* ================= CTA ================= */}
       <section className="px-4 sm:px-6 pb-20">
         <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2rem] bg-primary">
@@ -354,20 +418,7 @@ const HowItWorks = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
                 <button
                   onClick={() => handleNavigation("/doctors")}
-                  className="
-              px-8
-              py-3.5
-              rounded-xl
-              bg-[#D4AF37]
-              text-[#071A2B]
-              font-bold
-              shadow-lg
-              shadow-[#D4AF37]/10
-              hover:bg-[#E5C354]
-              hover:-translate-y-1
-              transition-all
-              duration-300
-            "
+                  className="px-8 py-3.5 rounded-xl bg-[#D4AF37] text-[#071A2B] font-bold shadow-lg shadow-[#D4AF37]/10 hover:bg-[#E5C354] hover:-translate-y-1 transition-all duration-300"
                 >
                   Explore Lawyers
                   <span className="ml-2">→</span>
@@ -375,18 +426,7 @@ const HowItWorks = () => {
 
                 <button
                   onClick={() => handleNavigation("/doctors")}
-                  className="
-              px-8
-              py-3.5
-              rounded-xl
-              border
-              border-white/20
-              text-white
-              font-semibold
-              hover:bg-white/10
-              transition-all
-              duration-300
-            "
+                  className="px-8 py-3.5 rounded-xl border border-white/20 text-white font-semibold hover:bg-white/10 transition-all duration-300"
                 >
                   Book a Consultation
                 </button>
@@ -394,9 +434,20 @@ const HowItWorks = () => {
 
               {/* Trust Text */}
               <div className="flex flex-wrap justify-center gap-6 mt-8 text-xs text-gray-400">
-                <span>✓ Verified Professionals</span>
-                <span>✓ Secure Payments</span>
-                <span>✓ Easy Scheduling</span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={14} strokeWidth={1.8} />
+                  Verified Professionals
+                </span>
+
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck size={14} strokeWidth={1.8} />
+                  Secure Payments
+                </span>
+
+                <span className="flex items-center gap-1.5">
+                  <CalendarDays size={14} strokeWidth={1.8} />
+                  Easy Scheduling
+                </span>
               </div>
             </div>
           </div>
