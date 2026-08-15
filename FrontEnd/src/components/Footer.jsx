@@ -30,11 +30,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <img
+            <button className=" rounded-full transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#061A2A]">
+              <img
               src={assets.logo}
               alt="AdvocateAssam"
               className="w-52 rounded-full bg-primary p-2 shadow-lg"
             />
+            </button>
+            
 
             <p className="mt-6 max-w-sm text-sm leading-7 text-slate-300">
               Connecting individuals with trusted legal professionals. Access
