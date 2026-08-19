@@ -28,3 +28,4 @@ npm install
 ##  Author
 
 Bishal Das
+All Rights Reserved. Copyright © 2026 AdvocateAssam
